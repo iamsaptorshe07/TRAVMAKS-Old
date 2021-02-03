@@ -99,9 +99,9 @@ main{
 /* Tab active state */
 
 #services-tabs ul li.r-tabs-state-active a {
-    color: #f4c613;
+    color: #01307e;
     font-weight: 700;
-    border-bottom: 3px solid #f4c613;
+    border-bottom: 3px solid #01307e;
     padding-bottom: 5px;
     -webkit-transition: border-color 300ms linear;
     transition: border-color 300ms linear;
@@ -138,7 +138,7 @@ main{
     line-height: 24px;
     margin-bottom: 30px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
     main{
         transform: translateY(-15px);
     }
@@ -163,9 +163,9 @@ main{
         text-decoration: none;
     }
     .r-tabs-accordion-title.r-tabs-state-active a {
-        color: #f4c613;
+        color: #01307e;
         font-weight: 700;
-        border-bottom: 3px solid #f4c613;
+        border-bottom: 3px solid #01307e;
         padding-bottom: 5px;
         -webkit-transition: border-color 300ms linear;
         transition: border-color 300ms linear;
@@ -207,15 +207,13 @@ main{
         text-align: center;
     }
     .hidetxt{
-        
+        border-radius: 5px;
         text-align: center;
         left: 50%;
         transform: translateX(-50%);
     }
     #heading h2{
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
+        opacity: 0;
     }
     .col-md-6{
         margin: 15px 0 15px 0;
