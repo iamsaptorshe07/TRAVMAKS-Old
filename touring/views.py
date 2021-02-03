@@ -271,7 +271,7 @@ def bookTour(request,tourId,agentId):
                         address = request.POST.get('address')
                         total_people = int(request.POST.get('total_people'))
                         total_payment = tour.price * total_people
-                        payment = total_payment*(10/100)
+                        payment = round(total_payment*(10/100),2)
                         order_id = OrderIdGenerator()
                         order = Order(
                             order_id = order_id,

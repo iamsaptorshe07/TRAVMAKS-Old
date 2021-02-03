@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.utils.html import strip_tags
 # Account Info Import
 from accounts.models import *
 from accounts.tokens import activation_token
@@ -49,23 +50,30 @@ def messages_sender(request,user):
         else:
             return False
         site = get_current_site(request)
-        mail_subject = 'Site Activation Link'
-        message = render_to_string('{}.html'.format(email_temp), {
-            'user': user,
+        context={
+            'user': user.name,
             'domain': site,
             'uid':user.id,
-            'token':activation_token.make_token(user)
-                    })
-        to_email=user.email
-        to_list=[to_email]
+            'token':activation_token.make_token(user)                   
+        }
+        mail_subject = 'Travmaks Account Activation Link'
+        html_message = render_to_string('{}.html'.format(email_temp),context=context)
+        message = strip_tags(html_message)
+        to_email_list=[user.email]
         from_email=settings.EMAIL_HOST_USER
-        print(from_email,'\n\n',message,'\n\n')
-        send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
+        print(from_email,'\n\n',message,'\n\n',to_email_list,'\n\n')
+        email = EmailMultiAlternatives(
+            mail_subject,
+            message,
+            from_email,
+            to_email_list
+        )
+        email.attach_alternative(html_message,"text/html")
+        email.send()
         return True
     except Exception as e:
         print(e)
         return False
-
 
 # Travel - Agent Signup -----------------------------------------------
 class TravelAgentSignup(APIView):

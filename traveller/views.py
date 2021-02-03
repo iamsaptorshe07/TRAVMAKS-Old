@@ -97,7 +97,7 @@ def upcomingTour(request,userId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
         if user.userAccess.userId == userId:
-            tours = Order.objects.filter(customer=user)
+            tours = Order.objects.filter(customer = request.user,status=True,agent_approval=True)
             Tour=[]
             for i in tours:
                 print(i)
