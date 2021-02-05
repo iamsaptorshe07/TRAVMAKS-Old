@@ -22,10 +22,17 @@ class UpcomingTour(APIView):
                     if i.tour.startDate > date.today():
                         orders.append(i)
                 order_serializer = OrderSerializer(orders,many=True)
+                data = order_serializer.data
+                site = str(get_current_site(request))
+                for i in data:
+                    tour = Tour.objects.get(id=i['tour'])
+                    i['tour_name']=tour.tourHeading
+                    i['tour_thumbnail']= site + tour.thumbnail.url
+                    i['tour_slug']=tour.tourSlug
                 return Response(
                     data = {
                         'status':200,
-                        'upcomingTours':order_serializer.data
+                        'upcomingTours':data
                     },
                     status = status.HTTP_200_OK
                 )
@@ -57,10 +64,18 @@ class OngoingTour(APIView):
                     if date.today() >= i.tour.startDate and date.today() <= i.tour.endDate:
                         orders.append(i)
                 order_serializer = OrderSerializer(orders,many=True)
+                data = order_serializer.data
+                site = str(get_current_site(request))
+                for i in data:
+                    tour = Tour.objects.get(id=i['tour'])
+                    i['tour_name']=tour.tourHeading
+                    i['tour_thumbnail']= site + tour.thumbnail.url
+                    i['tour_slug']=tour.tourSlug
+                
                 return Response(
                     data = {
                         'status':200,
-                        'ongoingTours':order_serializer.data
+                        'ongoingTours':data
                     },
                     status = status.HTTP_200_OK
                 )

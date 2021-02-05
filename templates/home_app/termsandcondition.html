@@ -41,18 +41,12 @@
         color: black;
     }
     .left ul li:hover{
-        background-color: teal;
+        background-color: #0a2e4e;
         border-radius: 5px;
         color: white;
     }
-    /* .left ul li:clicked{
-        
-        background-color: teal;
-        border-radius: 5px;
-        color: white;
-    } */
     .moo{
-        background-color: teal;
+        background-color: #0a2e4e;
         color: white!important;
         border-radius: 6px;
     }
@@ -103,12 +97,32 @@
     .heading h1{
         margin: 0 30px 0 30px;
     }
-    @media screen and (max-width: 800px) {
+    .head div{
+        padding-top: 55px;
+    }
+    @media screen and (max-width: 768px) {
+        
+        .left ul li:hover{
+            background-color: #C6CFD7;
+            color: black;
+        }
+        .moo{
+            background-color: #C6CFD7;
+            color: black!important;
+        }
+        .heading{
+            border-radius: 0px;
+            margin: 30px 0 0 0;
+        }
         main{
             height: auto;
         }
         .heading img{
-            height: 70%;
+            display: none;
+        }
+        .heading h1{
+            margin: 0px 0px 0 0;
+            font-size: 35px;
         }
         .left{
             height: auto;
@@ -116,21 +130,41 @@
         }
         .right{
             height: 60vh;
+            width: 100%;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+        .right .head{
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+            padding-right: 7px;
+        }
+        .right .head h3{
+            font-size: 1.3rem;
         }
         .left ul{
             display: grid;
-    		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            justify-content: center;
+    		grid-template-columns: repeat(auto-fit, minmax(100px, 135px));
         }
         .left ul a{
-            max-width: 120px;
+            max-width: 135px;
         }
         .left ul a li{
             word-break: break-word;
             padding: 5px;
         }
     }
-    .head div{
-        padding-top: 55px;
+    @media screen and (max-width: 500px) {
+        .right{
+            padding: 0 40px;
+        }
+        .heading{
+            border-radius: 0px;
+            margin: 0 0 0 0;
+        }
     }
 </style>
 {% endblock stylesheets %}
@@ -142,7 +176,6 @@
 
 
 <main>
-    <br>
     <div class="container">
         <div class="row">
             <div class="heading col-md-12">
@@ -162,10 +195,10 @@
                     <a href="#tc4"><li class="tc4" onclick="fun('tc4');">Eligibility</li></a> 
                     <a href="#tc5"> <li class="tc5" onclick="fun('tc5');">Intellectual Property</li></a>  
                     <a href="#tc6"><li class="tc6" onclick="fun('tc6');">Responsibility</li></a> 
-                    <a href="#tc7"><li class="tc7" onclick="fun('tc7');">SECURITY</li></a> 
-                    <a href="#tc8"><li class="tc8" onclick="fun('tc8');">FEES AND PAYMENT</li></a>  
-                    <a href="#tc9"><li class="tc9" onclick="fun('tc9');">ADVERTISEMENT</li></a>
-                    <a href="#tc10"><li class="tc10" onclick="fun('tc10');">FRADULENTS</li></a>
+                    <a href="#tc7"><li class="tc7" onclick="fun('tc7');">Security</li></a> 
+                    <a href="#tc8"><li class="tc8" onclick="fun('tc8');">Fees and Payment</li></a>  
+                    <a href="#tc9"><li class="tc9" onclick="fun('tc9');">Advertisement</li></a>
+                    <a href="#tc10"><li class="tc10" onclick="fun('tc10');">Fradulents</li></a>
                     <a href="#tc11"><li class="tc11" onclick="fun('tc11');">Others</li></a>
                 </ul>
             </div>

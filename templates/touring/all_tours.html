@@ -20,6 +20,7 @@
     }
 
     .tourTypeSearch span {
+        cursor: pointer;
         margin: 10px 15px;
         width: auto;
         height: auto;
@@ -34,14 +35,14 @@
 
     .tourTypeSearch span:hover {
         color: #fff;
-        background-color:#007bff;
-        border-color:#007bff;
+        background-color:#0d141c;
+        border-color:#0d141c;
     }
 
     .tourTypeSearch span.active {
         color: #fff;
-        background-color:#007bff;
-        border-color:#007bff;
+        background-color:#0d141c;
+        border-color:#0d141c;
     }
 
     #tours {
@@ -214,22 +215,19 @@
     .tour:hover .stars ul li:nth-child(5) i {
         transform: translate(0px, -80px);
     }
-
     .noMatchFound {
         position: absolute;
         display: none;
         font-size: 30px;
         font-weight: bold;
     }
-
     .searchbtn {
         width: 150px;
         padding: 2px 0;
         border-radius: 4px;
-        background-color:#007bff;
+        background-color:#0d141c;
         color: white;
     }
-
     .plagination {
         display: flex;
         align-items: center;
@@ -313,7 +311,7 @@
         padding: 0;
     }
     .mCheckBox.checked{
-        background-color: #007bff;
+        background-color: #0d141c;
     }
     .mCheckBox.checked::before{
         content: '✓';
@@ -421,7 +419,7 @@
       }, 3000);
     }
 </script>
-<main class="pt-100">
+<main class="pt-5">
     <div class="container mb-5">
         <div class="row">
             <form class="col-lg-12" id="searchTour" action="/tour/advanced-search" method="GET"
@@ -441,34 +439,26 @@
                 {% endif %}
                 <div class="row">
                     <div class="col-md-6">
-                        <p>Starting From :</p>
+                        <label>Starting From :</label>
                         <input type="text" class="form-control" name="startLocSearch" id="startLocSearch"
                             placeholder="Enter Stating Location" required />
                     </div>
                     <div class="col-md-6">
-                        <p>Visiting To :</p>
+                        <label>Visiting To :</label>
                         <input type="text" class="form-control" name="endLocSearch" id="endLocSearch"
                             placeholder="Enter Visiting Location" required />
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col-md-4">
-                        <p>Departure after :</p>
+                    <div class="col-md-6">
+                        <label>Departure after :</label>
                         <input type="text" class="form-control" name="startDateSearch" id="startDateSearch"
                             placeholder="Enter Stating Date" required />
-                        <p>Returning within :</p>
+                        <label>Returning within :</label>
                         <input type="text" class="form-control" name="endDateSearch" id="endDateSearch"
                             placeholder="Enter Ending Date" required />
                     </div>
-                    <div class="col-md-4 d-flex justify-content-center flex-column">
-                        <p>
-                            <label for="amount">Price range:</label><br>
-                            <input type="text" id="amount" name="amountRange" readonly
-                                style="border:0;font-weight:bold;color:#007bff;">
-                        </p>
-                        <div id="slider-range"></div>
-                    </div>
-                    <div class="col-md-4 d-flex justify-content-around flex-column align-items-center">
+                    <div class="col-md-6 d-flex justify-content-around flex-column align-items-center">
                         <div class="w-100">
                             <label>Min Tour Duration (Dates)</label>
                             <input type="number" name="minDuration" class="form-control" placeholder="Tour Duration"
@@ -480,8 +470,18 @@
                                 min="2" max="365">
                         </div>
                     </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-12 mb-3 d-flex justify-content-center flex-column">
+                        <p>
+                            <label for="amount">Price range:</label><br>
+                            <input type="text" id="amount" name="amountRange" readonly
+                                style="border:0;font-weight:bold;color:#0d141c;">
+                        </p>
+                        <div id="slider-range"></div>
+                    </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn-primary"
+                        <button type="submit" class="searchbtn"
                             style="width: 150px;padding: 2px 0;border-radius: 4px;">Search</button>
                     </div>
                 </div>
@@ -538,7 +538,7 @@
                             <div class="con3">{{tour.startDate}} -> {{tour.endDate}}</div>
                             <div class="con4">(Book before {{tour.last_booking_date}})</div>
                             <div class="con4" 
-                                style="justify-content: left;"
+                                style="justify-content: left;cursor: pointer;"
                                 data-id="{{tour.tourId}}"
                                 data-img="{{tour.thumbnail.url}}"
                                 onclick="addInCompareList1(this,this.getAttribute('data-id'),this.getAttribute('data-img'));">
