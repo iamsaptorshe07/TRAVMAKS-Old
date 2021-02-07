@@ -5,7 +5,6 @@ from datetime import datetime
 from datetime import date
 # Create your tests here.
 def OrderIdGenerator():
-    
     charList='0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
     uniqueId="x"
     for r in range(5):
