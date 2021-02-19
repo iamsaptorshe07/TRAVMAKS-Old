@@ -9,137 +9,143 @@
 <script type="text/javascript">
     var loader = document.getElementById('preload');
     function removeLoader() {
-      setTimeout(function () {
-        loader.style.display = 'none';
-      }, 3000);
+        setTimeout(function () {
+            loader.style.display = 'none';
+        }, 3000);
     }
 </script>
 <!--Continious Advertisements sections ends -->
 <style>
-    .text-bold{
-	font-weight: 700;
-	font-size:60px;
-	font-family: 'Oswald', sans-serif;
-    
-	}
-/* Home Section */
-#home{
-    height: 550px;
-    justify-content: center;
-    align-items: center;
-}
+    .text-bold {
+        font-weight: 700;
+        font-size: 60px;
+        font-family: 'Oswald', sans-serif;
 
-#home::before{ 
-    content: "";
-    position: absolute;
-    background: url("{% static 'img/land1.jpg' %}") no-repeat center center/cover;
-    height: 650px;
-    top:0px;
-    left:0px;
-    width: 100%;
-    z-index: -1;
-    opacity:0.89;
-}
+    }
 
-#home h1{
-    color:white;
-    text-align: center;
-    font-family: 'Bree Serif', serif;
-	transform:translate(0,110px);
-}
+    /* Home Section */
+    #home {
+        height: 550px;
+        justify-content: center;
+        align-items: center;
+    }
 
+    #home::before {
+        content: "";
+        position: absolute;
+        background: url("{% static 'img/land1.jpg' %}") no-repeat center center/cover;
+        height: 650px;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        z-index: -1;
+        opacity: 0.89;
+    }
 
-@media screen and (min-width: 420px) and (max-width: 1023px){
-    #home{
-    height: 370px; 
-    padding: 3px 28px;
-}
-
-#home::before{
-    height: 480px; 
-}
-}
-
-  /*search bar*/
-.search-sec{
-    background: rgba(255,255,255,0.26);
-	top: -368px;
-	padding: 2rem;
-    z-index: 1;
-    position: relative;
-	margin-left:80px;
-	margin-right:80px;
-	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	 border-radius:20px;
- 
-}
+    #home h1 {
+        color: white;
+        text-align: center;
+        font-family: 'Bree Serif', serif;
+        transform: translate(0, 110px);
+    }
 
 
+    @media screen and (min-width: 420px) and (max-width: 1023px) {
+        #home {
+            height: 370px;
+            padding: 3px 28px;
+        }
 
-.hdng {
-    width: 247px;
-    height: 55px;
-    background: #FFFFFF;
-    margin-left: auto;
-    margin-right: auto;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    line-height: 55px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 25px;
-    color: #2e2e2e;
-    font-weight: 400;
-    text-align: center;
-	transform:translate(0,12px);
-	}
-.wht{
-background:#fff;
- padding:2rem;
- border-radius:5px;
-}
-.search-sec label{
-	color: #262626;
-    font-size: 18px;
-    font-weight: 600;
-	margin-bottom:20px;
-   }
-.search-slt{
-    display: block;
-    width: 100%;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #F9D423;
-    height: calc(3rem + 2px) !important;
-    border-radius:20px;
-	
-}
+        #home::before {
+            height: 480px;
+        }
+    }
 
-.wrn-btn{
-    background: linear-gradient(to right, rgb(255, 81, 47), rgb(240, 152, 25));
-    border-color: #fc4a1a;
-	color:#fff;
-	width: 100%;
-    font-size: 16px;
-    font-weight: 400;
-    text-transform: capitalize;
-     height: calc(3rem + 2px) !important;
-     border-radius:0;
-	 border-radius:20px;
-	/* margin-top:45px;*/
-}
-input,
-input::-webkit-input-placeholder {
-    font-family: 'Oswald', sans-serif;
-	font-size: 18px !important;
-	font-weight: 400 !important;
-	
-}
+    /*search bar*/
+    .search-sec {
+        background: rgba(255, 255, 255, 0.26);
+        top: -368px;
+        padding: 2rem;
+        z-index: 1;
+        position: relative;
+        margin-left: 80px;
+        margin-right: 80px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 20px;
+
+    }
+
+
+
+    .hdng {
+        width: 247px;
+        height: 55px;
+        background: #FFFFFF;
+        margin-left: auto;
+        margin-right: auto;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        line-height: 55px;
+        font-family: 'Oswald', sans-serif;
+        font-size: 25px;
+        color: #2e2e2e;
+        font-weight: 400;
+        text-align: center;
+        transform: translate(0, 12px);
+    }
+
+    .wht {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 5px;
+    }
+
+    .search-sec label {
+        color: #262626;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .search-slt {
+        display: block;
+        width: 100%;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #F9D423;
+        height: calc(3rem + 2px) !important;
+        border-radius: 20px;
+
+    }
+
+    .wrn-btn {
+        background: linear-gradient(to right, rgb(255, 81, 47), rgb(240, 152, 25));
+        border-color: #fc4a1a;
+        color: #fff;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: capitalize;
+        height: calc(3rem + 2px) !important;
+        border-radius: 0;
+        border-radius: 20px;
+        /* margin-top:45px;*/
+    }
+
+    input,
+    input::-webkit-input-placeholder {
+        font-family: 'Oswald', sans-serif;
+        font-size: 18px !important;
+        font-weight: 400 !important;
+
+    }
+
     /*Floating Card */
-    #floating{
-	margin-top:-250px;
-	}
+    #floating {
+        margin-top: -250px;
+    }
 
     .flt .btn {
         border-radius: 2px;
@@ -158,8 +164,8 @@ input::-webkit-input-placeholder {
     .flt .card-img-block img {
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
-		width: 100%;
-		height: 200px;
+        width: 100%;
+        height: 200px;
     }
 
     .flt h5 {
@@ -174,122 +180,137 @@ input::-webkit-input-placeholder {
 
     .flt .btn-primary {
         background: linear-gradient(to right, rgb(255, 81, 47), rgb(240, 152, 25));
-    border-color: #fc4a1a;
+        border-color: #fc4a1a;
     }
-	.boxed-btn4 {
-    background: #FF4A52;
-    color: #fff;
-    display: inline-block;
-    padding: 13px 39px;
-    font-family: "Rubik", sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    border: 0;
-    cursor: pointer;
-}
-a:hover {
-  text-decoration: underline;
-} 
 
-
-.spl{
-position: absolute;
-    background: #1EC6B6;
-    padding: 7px 18px 4px 18px;
-    display: inline-block;
-    top: 4px;
-    left: 20px;
-    -webkit-border-radius: 18px;
-    -moz-border-radius: 18px;
-    border-radius: 18px;
-    color: #fff;
-    font-size: 16px;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-}
-.anim{
-    transition: .5s;
-    animation: anim 3s linear infinite;
-}
-@keyframes anim{
-    0%{
-        transform: translateY(10px);
+    .boxed-btn4 {
+        background: #FF4A52;
+        color: #fff;
+        display: inline-block;
+        padding: 13px 39px;
+        font-family: "Rubik", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        border: 0;
+        cursor: pointer;
     }
-    50%{
-        transform: translateY(-10px);
+
+    a:hover {
+        text-decoration: underline;
     }
-    100%{
-        transform: translateY(10px);
+
+
+    .spl {
+        position: absolute;
+        background: #1EC6B6;
+        padding: 7px 18px 4px 18px;
+        display: inline-block;
+        top: 4px;
+        left: 20px;
+        -webkit-border-radius: 18px;
+        -moz-border-radius: 18px;
+        border-radius: 18px;
+        color: #fff;
+        font-size: 16px;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
     }
-}
-.popular_destination_area .single_destination .thumb img {
-  width: 100%;
-  height: 250px;
-  border-radius: 5px;
-}
-@media (max-width: 768px) {
-  .popular_destination_area .single_destination .thumb img {
-  width: 513px;
-  height: 310px;
-}
-}
 
-
-@media only screen and (max-width: 991px){
-
-.search-sec{
-	top: auto !important;
-	padding: 2rem;
-	margin-left:10px;
-	margin-right:10px;
-	}
-	.search-slt{
-    display: inline;
-    width: 105%;
-	
+    .anim {
+        transition: .5s;
+        animation: anim 3s linear infinite;
     }
-	.search-sec label{
-	font-size: 15px;
-    font-weight: 600;
-	margin-bottom:20px;
-	margin-left:1px !important;
-   }
-   .wht{
-   width:100% !important;
-   }
-   .hdng {
-    width: 100%;
+
+    @keyframes anim {
+        0% {
+            transform: translateY(10px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(10px);
+        }
     }
-	#floating{
-	margin-top:auto;
-	}
 
-}
-.LATtour{
-    max-width: 340px;
-}
-#floating .row{
-    justify-content: center;
-}
-#floating .mt-4{
-    width: 300px;
-}
+    .popular_destination_area .single_destination .thumb img {
+        width: 100%;
+        height: 250px;
+        border-radius: 5px;
+    }
 
+    @media (max-width: 768px) {
+        .popular_destination_area .single_destination .thumb img {
+            width: 513px;
+            height: 310px;
+        }
+    }
+
+
+    @media only screen and (max-width: 991px) {
+
+        .search-sec {
+            top: auto !important;
+            padding: 2rem;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .search-slt {
+            display: inline;
+            width: 105%;
+
+        }
+
+        .search-sec label {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-left: 1px !important;
+        }
+
+        .wht {
+            width: 100% !important;
+        }
+
+        .hdng {
+            width: 100%;
+        }
+
+        #floating {
+            margin-top: auto;
+        }
+
+    }
+
+    .LATtour {
+        max-width: 340px;
+    }
+
+    #floating .row {
+        justify-content: center;
+    }
+
+    #floating .mt-4 {
+        width: 300px;
+    }
 </style>
 <!--Slider strats here-->
 {% if messages %}
-    {% for message in messages %}
-                    <div class="col-md-12 mt-3">
-                        <div class="alert alert-{{message.tags}}" role="alert">
-                            {{message}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                    {% endfor %}
+{% for message in messages %}
+<div class="col-md-12 mt-3">
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+{% endfor %}
 {% endif %}
 <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
@@ -318,7 +339,7 @@ position: absolute;
     <a href="#" style="opacity: 0.9!important;">24x7 Support &nbsp;<i class="fa fa-life-ring"></i></a>
 </div>
 <br>
-                    <!--
+<!--
                         <div class="tab-pane" id="guide">
                             <div class="form-content">
                                 <div class="row">
@@ -377,114 +398,114 @@ position: absolute;
   End Tabs with icons on Card -->
 
 <section id="home">
-        <h1 class="text-bold mt-4">One Stop Solution For Travellers</h1>
+    <h1 class="text-bold mt-4">One Stop Solution For Travellers</h1>
 </section>
 
-<div class="search-sec" >
+<div class="search-sec">
     <div class="container">
         <form action="/tour/search" method="GET">
             <div class="row">
-			    <div class="col-lg-12">
-				<h2 class="hdng">Search for your trip</h2>
-            
+                <div class="col-lg-12">
+                    <h2 class="hdng">Search for your trip</h2>
+
                     <div class="wht">
-                    <div class="row">
-                        <div class=" col-md-4 p-2">
-						    <input type="text" class="form-control search-slt" placeholder="Starting Location *" minlength="3"
-                                                name="sLocation" required/>
-                        </div>
-                         <div class="col-md-4  p-2">
-						    <input type="text" class="form-control search-slt" placeholder="Ending Location *" minlength="3"
-                                                name="eLocation" required/>
-                        </div>
-                          
-                        <div class=" col-md-4 p-2">
-                            <button type="submit" class="btn btn-warning wrn-btn">Search</button>
+                        <div class="row">
+                            <div class=" col-md-4 p-2">
+                                <input type="text" class="form-control search-slt" placeholder="Starting Location *"
+                                    minlength="3" name="sLocation" required />
+                            </div>
+                            <div class="col-md-4  p-2">
+                                <input type="text" class="form-control search-slt" placeholder="Ending Location *"
+                                    minlength="3" name="eLocation" required />
+                            </div>
+
+                            <div class=" col-md-4 p-2">
+                                <button type="submit" class="btn btn-warning wrn-btn">Search</button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </form>
     </div>
-    </div>
+</div>
 
 
 
 
 <section id="floating">
-<div class="container">
-    <div class="row">
-        
-        <div class="col-md-4 mt-4">
-            <div class="card flt">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="../static/img/frnds1.jpg" alt="">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 mt-4">
+                <div class="card flt">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="../static/img/frnds1.jpg" alt="">
+                    </div>
+                    <div class="card-body pt-0">
+                        <h5 class="card-title">Friends Group Tours</h5>
+                        <a href="/tour/friends-tour" class="btn btn-primary">View More</a>
+                    </div>
                 </div>
-                <div class="card-body pt-0">
-                    <h5 class="card-title">Friends Group Tours</h5>
-                    <a href="/tour/friends-tour" class="btn btn-primary">View More</a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card flt">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="../static/img/couple.jpg" alt="">
+                    </div>
+                    <div class="card-body pt-0">
+                        <h5 class="card-title">Couple Tours</h5>
+                        <a href="/tour/couple-tour" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card flt">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="../static/img/family.jpg" alt="">
+                    </div>
+                    <div class="card-body pt-0">
+                        <h5 class="card-title">Family Tours</h5>
+                        <a href="/tour/family-tour" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card flt">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="../static/img/solo.jpg" alt="Card image cap">
+                    </div>
+                    <div class="card-body pt-0">
+                        <h5 class="card-title">Solo Tours</h5>
+                        <a href="/tour/solo-tour" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card flt">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="../static/img/treking.jpg" alt="Card image cap">
+                    </div>
+                    <div class="card-body pt-0">
+                        <h5 class="card-title">Trekking Special</h5>
+                        <a href="/tour/all-tours" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <div class="card flt">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="../static/img/biketour.jpg" alt="Card image cap">
+                    </div>
+                    <div class="card-body pt-0">
+                        <h5 class="card-title">Bike Tours</h5>
+                        <a href="/tour/all-tours" class="btn btn-primary">View More</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-4">
-            <div class="card flt">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="../static/img/couple.jpg" alt="">
-                </div>
-                <div class="card-body pt-0">
-                    <h5 class="card-title">Couple Tours</h5>
-                    <a href="/tour/couple-tour" class="btn btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-4">
-            <div class="card flt">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="../static/img/family.jpg" alt="">
-                </div>
-                <div class="card-body pt-0">
-                    <h5 class="card-title">Family Tours</h5>
-                    <a href="/tour/family-tour" class="btn btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
-		<div class="col-md-4 mt-4">
-            <div class="card flt">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="../static/img/solo.jpg" alt="Card image cap">
-                </div>
-                <div class="card-body pt-0">
-                    <h5 class="card-title">Solo Tours</h5>
-                    <a href="/tour/solo-tour" class="btn btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
-		
-		<div class="col-md-4 mt-4">
-            <div class="card flt">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="../static/img/treking.jpg" alt="Card image cap">
-                </div>
-                <div class="card-body pt-0">
-                    <h5 class="card-title">Trekking Special</h5>
-                    <a href="/tour/all-tours" class="btn btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
-		
-		<div class="col-md-4 mt-4">
-            <div class="card flt">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="../static/img/biketour.jpg" alt="Card image cap">
-                </div>
-                <div class="card-body pt-0">
-                    <h5 class="card-title">Bike Tours</h5>
-                    <a href="/tour/all-tours" class="btn btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
-</div>
 </section>
 <!--Random design-->
 <br><br><br><br>
@@ -546,17 +567,17 @@ position: absolute;
 
                 </div>
                 <div class="place_info">
-                    
-                        <h5>
-                        4/5<i class="fa fa-star" ></i> &nbsp; 
+
+                    <h5>
+                        4/5<i class="fa fa-star"></i> &nbsp;
                         <a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">
-                        {{tour.tourHeading}}
-                        </h5>
+                            {{tour.tourHeading}}
+                    </h5>
                     </a>
                     <p>{{tour.startingLocation}} -> {{tour.endLocation}}</p>
                     <p>Price: {{tour.price}}&#8377</p>
-					<p>{{tour.startDate}} to {{tour.endDate}}</p>
-					<p>(Book before {{tour.last_booking_date}})</p>
+                    <p>{{tour.startDate}} to {{tour.endDate}}</p>
+                    <p>(Book before {{tour.last_booking_date}})</p>
                     <a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">
                         <p>view more</p>
                     </a>
@@ -586,11 +607,11 @@ position: absolute;
             </div>
         </div>
     </div>
-{% endif %}
-<!--Latest added destination ends here-->
+    {% endif %}
+    <!--Latest added destination ends here-->
 
-<!--Data Sciene tours-->
-<!--
+    <!--Data Sciene tours-->
+    <!--
 <div class="popular_places_area">
     <div class="container">
         <div class="row justify-content-center">
@@ -721,56 +742,56 @@ position: absolute;
     </div>
 </div>
 -->
-<!--Data Science tours-->
+    <!--Data Science tours-->
 
 
-{% endblock body %}
+    {% endblock body %}
 
-<!--Javascript for continous advertisement-->
-<script type="text/javascript">
-    const $dropdown = $(".dropdown");
-    const $dropdownToggle = $(".dropdown-toggle");
-    const $dropdownMenu = $(".dropdown-menu");
-    const showClass = "show";
+    <!--Javascript for continous advertisement-->
+    <script type="text/javascript">
+        const $dropdown = $(".dropdown");
+        const $dropdownToggle = $(".dropdown-toggle");
+        const $dropdownMenu = $(".dropdown-menu");
+        const showClass = "show";
 
-    $(window).on("load resize", function () {
-        if (this.matchMedia("(min-width: 768px)").matches) {
-            $dropdown.hover(
-                function () {
-                    const $this = $(this);
-                    $this.addClass(showClass);
-                    $this.find($dropdownToggle).attr("aria-expanded", "true");
-                    $this.find($dropdownMenu).addClass(showClass);
-                },
-                function () {
-                    const $this = $(this);
-                    $this.removeClass(showClass);
-                    $this.find($dropdownToggle).attr("aria-expanded", "false");
-                    $this.find($dropdownMenu).removeClass(showClass);
-                }
-            );
-        } else {
-            $dropdown.off("mouseenter mouseleave");
-        }
-    });
-
-
-    jQuery(document).ready(function ($) {
-        $(window).scroll(function () {
-            if ($(document).scrollTop() > 150) {
-                // Navigation Bar
-                $('.navbar').removeClass('fadeIn');
-                $('body').addClass('shrink');
-                $('.navbar').addClass('animated fadeInDown');
+        $(window).on("load resize", function () {
+            if (this.matchMedia("(min-width: 768px)").matches) {
+                $dropdown.hover(
+                    function () {
+                        const $this = $(this);
+                        $this.addClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "true");
+                        $this.find($dropdownMenu).addClass(showClass);
+                    },
+                    function () {
+                        const $this = $(this);
+                        $this.removeClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "false");
+                        $this.find($dropdownMenu).removeClass(showClass);
+                    }
+                );
             } else {
-                $('.navbar').removeClass('fadeInDown');
-                $('body').removeClass('shrink');
-                $('.navbar').addClass('animated fadeIn');
+                $dropdown.off("mouseenter mouseleave");
             }
         });
-    });
-</script>
-<!--Javascript for continious ad ends here-->
-</body>
 
-</html>
+
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+                if ($(document).scrollTop() > 150) {
+                    // Navigation Bar
+                    $('.navbar').removeClass('fadeIn');
+                    $('body').addClass('shrink');
+                    $('.navbar').addClass('animated fadeInDown');
+                } else {
+                    $('.navbar').removeClass('fadeInDown');
+                    $('body').removeClass('shrink');
+                    $('.navbar').addClass('animated fadeIn');
+                }
+            });
+        });
+    </script>
+    <!--Javascript for continious ad ends here-->
+    </body>
+
+    </html>
