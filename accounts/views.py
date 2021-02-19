@@ -277,7 +277,7 @@ def sellerLogin(request):
                             messages.error(request,'Invalid Credential')
                             return redirect('Seller_login')
                     else:
-                        messages.warning(request,"You don't have any agency account, Please register yourself as an user")
+                        messages.warning(request,"You don't have any agency account, Please register yourself as an seller")
                         return redirect('sellerAgencyAccountSignup')
                 else:
                     messages.warning(request,'Check your mail sent on {} to activate the account'.format(user.creationTime))
@@ -538,7 +538,11 @@ def userProfile(request, account_type, uid):
                     if account_type == 'traveller':
                         return render(request, 'accounts/travelleraccountedit.html')
                     elif account_type == 'seller':
-                        return render(request, 'accounts/selleraccountedit.html')
+                        if AgencyDetail.objects.filter(user=user).exists():
+                            return render(request, 'accounts/selleraccountedit.html')
+                        else:
+                            messages.warning(request,'In order to proceed register your agency first')
+                            return redirect('RegisterAgency')
                     else:
                         return render(request,'forbidden.html')
                 else:
