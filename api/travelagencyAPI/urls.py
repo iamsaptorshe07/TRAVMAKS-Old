@@ -9,4 +9,5 @@ urlpatterns = [
         path('order-booking-history',OrderBookingHistory.as_view(),name='OrderBookingHistory'),
         path('my-incoming-order-stack',IncomingOrderStack.as_view(),name='IncomingOrderStack'),
         path('accept-decline-tour/<orderId>',AcceptOrDeclineTour.as_view(),name='AcceptOrDecline'),
+        
     ]

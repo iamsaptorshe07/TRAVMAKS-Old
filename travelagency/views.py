@@ -7,7 +7,7 @@ from django.contrib import messages
 from touring.models import *
 from datetime import datetime 
 from datetime import date
-
+from accounts.models import AgencyDetail
 # Create your views here.
 def travelagency_home(request,agid):
     user = request.user
@@ -442,3 +442,17 @@ def declineOrder(request,orderId):
             return render(request,'forbidden.html')
     else:
         return render(request,'404.html')
+
+
+
+def agencyTourShare(request,agencyID):
+    if AgencyDetail.objects.filter(agency_Id=agencyID).exists():
+        agency = AgencyDetail.objects.get(agency_Id=agencyID)
+        tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1,agency=agency)
+        context = {
+            'Tour':tour
+        }
+        return render(request,'touring/all_tours.html')
+    else:
+        return render(request,'404.html')
+        

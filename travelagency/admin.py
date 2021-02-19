@@ -24,3 +24,4 @@ class TourImageAdmin(admin.ModelAdmin):
     search_fields = ['tour']
 '''
 admin.site.register(Tour,TourDetailsAdmin)#,TourImageAdmin)
+admin.site.register(TourImage)
