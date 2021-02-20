@@ -480,6 +480,21 @@
         border-radius: 5px;
         color: white;
     }
+    .agencyDetails{
+        display: flex;
+    }
+    .agencyDetails .con{
+        min-width: 350px;
+    }
+    .travmaksPartner{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+        border-top: 1px solid rgba(0, 0, 0, .64);
+        border-bottom: 1px solid rgba(0, 0, 0, .64);
+    }
 </style>
 {% endblock %}
 <!--Stylesheets Ends -->
@@ -500,15 +515,23 @@
 </script>
 <main class="pt-5">
     <div class="container mb-5">
-        <div class="row d-flex">
-            <div class="thumbnail" style="width: auto;height: auto;margin-right: 15px;">
-                <img src="" alt="" width="260px" height="260px">
+        <div class="row">
+            <div class="col-md-12 agencyDetails">
+                <div class="thumbnail" style="width: auto;height: auto;margin-right: 15px;">
+                    <img src="" alt="" width="260px" height="260px">
+                </div>
+                <div class="con">
+                    <h3>Agency Id : aeg51b584rfs3</h3>
+                    <h3>Agent Id : aeg51b584rfs3</h3>
+                </div>
             </div>
-            <div>
-                <h1>Agency Id : aeg51b584rfs3</h1>
-                <h1>Agent Id : aeg51b584rfs3</h1>
-            </div>
+        </div><br>
+        <div class="row travmaksPartner">
+            <img src="" alt="" width="30px" height="30px">
+            &nbsp;&nbsp;
+            Partnered With Travmaks
         </div>
+        <br>
         <div class="row">
             <form class="col-lg-12" id="searchTour" action="/tour/advanced-search" method="GET"
                 onsubmit="return check1();">
