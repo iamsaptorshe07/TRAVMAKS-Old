@@ -14,5 +14,5 @@ urlpatterns = [
     path('accept-package-booking-order/<orderId>',acceptOrder,name='acceptOrder'),
     path('decline-package-booking-order/<orderId>',declineOrder,name='declineOrder'),
     path('travmaks-partner/<agencyID>',agencyTourShare,name='AgencyPage'),
-    path('test-url',testURL,name='testURL'),
+    path('test-url',testpage,name='testURL'),
 ]

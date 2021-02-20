@@ -463,3 +463,10 @@ def agencyTourShare(request,agencyID):
     else:
         return render(request,'404.html')
         
+
+
+def testpage(request):
+    return render(request,'test.html')
+
+
+    
