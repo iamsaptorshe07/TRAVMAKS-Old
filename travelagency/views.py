@@ -5,8 +5,8 @@ from django.http import *
 from .tests import *
 from django.contrib import messages
 from touring.models import *
-from datetime import datetime 
 from datetime import date
+
 from accounts.models import AgencyDetail
 # Create your views here.
 def travelagency_home(request,agid):
@@ -455,11 +455,16 @@ def declineOrder(request,orderId):
 def agencyTourShare(request,agencyID):
     if AgencyDetail.objects.filter(agency_Id=agencyID).exists():
         agency = AgencyDetail.objects.get(agency_Id=agencyID)
-        tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1,agency=agency)
+        print(date.today())
+        tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(date.today()),maximum_people__gte=1,agency=agency)
+        print(tour)
         context = {
-            'Tour':tour
+            'Tour':tour,
+            'AgencyId':agencyID,
+            'AgentId':agency.user.userAccess.agentId,
+            'partner':agency.travmaks_partner
         }
-        return render(request,'touring/all_tours.html')
+        return render(request,'travelagency/sharepage.html',context=context)
     else:
         return render(request,'404.html')
         
