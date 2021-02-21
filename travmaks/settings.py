@@ -16,7 +16,12 @@ SECRET_KEY = '^tl()34n(74#+)7m76z-n9#0isg)li+bbhu1edum*8&wfoq543'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'www.travmaks.in',
+    'travmaks.in',
+    'localhost',
+    '127.0.0.1'
+    ]
 
 # Overriding message tag 
 MESSAGE_TAGS = {
