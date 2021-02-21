@@ -48,6 +48,7 @@
     #tours {
         margin-top: 30px;
         position: relative;
+        display: flex;
     }
 
     #tours .selectbg {
@@ -67,6 +68,8 @@
     }
 
     .tours {
+        padding: 30px;
+        flex-grow: 1;
         margin-top: 60px;
         position: relative;
         display: flex;
@@ -77,11 +80,11 @@
     }
 
     .tour {
-        margin: 15px 0 55px 0;
+        margin: 15px 15px 55px 15px;
         width: 280px;
         min-height: 375px;
         background-color: #ffffff;
-        border-radius: 4px;
+        border-radius: 5px;
         border-top-left-radius: 50%;
         transition: .2s;
     }
@@ -473,8 +476,9 @@
     }
     .ShareBtn label{
         width: 150px;
+        cursor: pointer;
         height: auto;
-        padding: 5px 7px;
+        padding: 7px;
         text-align: center;
         background-color: #0d141c;
         border-radius: 5px;
@@ -486,14 +490,94 @@
     .agencyDetails .con{
         min-width: 350px;
     }
+    .agencyDetails h3{
+        position: relative;
+        margin-bottom: 6px;
+        font-size: 22px;
+    }
+    .agencyDetails h3::before{
+        content: '';
+        left: 0;
+        bottom: -5px;
+        height: 2px;
+        width: 100px;
+        background: #000;
+        border-radius: 20px;
+        position: absolute;
+    }
     .travmaksPartner{
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
-        padding: 20px 0;
-        border-top: 1px solid rgba(0, 0, 0, .64);
-        border-bottom: 1px solid rgba(0, 0, 0, .64);
+        padding: 10px 0;
+    }
+    #searchTour{
+        top: 80px;
+        position: sticky;
+        width: 400px;
+        min-width: 200px;
+        height: 600px;
+        border-radius: 10px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    @media screen and (min-width:1200px){
+        .mainContent{
+            max-width: 90%;
+        }
+    }
+    @media screen and (max-width: 850px) {
+        #searchTour {
+			z-index: 1000;
+			left: 50%;
+			overflow: hidden;
+			top: 50%;
+            color: white;
+            background: rgb(0 0 0 / 76%);
+            padding: 100px 30px 30px 30px;
+            position: fixed;
+			transform-origin: left top;
+			width: 100%;
+            /* max-height: 0%; */
+			height: 100%;
+			/* max-width: 0%; */
+			transition: 0.3s;
+			transform: scale(0);
+        }
+		#searchTour.opend{
+			left: 0;
+			top: 0;
+			max-width: 100%;
+			max-height: 100%;
+			transform: scale(1);
+		}
+        .openNavs{
+			cursor: pointer;
+			display: flex;
+			flex-flow: column;
+			position: fixed;
+			top: 70px;
+			left: 30px;
+			width: 30px;
+			height: 20px;
+			justify-content: space-between;
+			z-index: 1001;
+		}
+		.openNavs span{
+			width: 33px;
+			height: 4px;
+			background-color: #000000;
+			transition: 0.3s;
+		}
+		.openNavs span:nth-child(2){
+			width: 25px;
+		}
     }
 </style>
 {% endblock %}
@@ -514,90 +598,51 @@
     }
 </script>
 <main class="pt-5">
-    <div class="container mb-5">
-        <div class="row">
-            <div class="col-md-12 agencyDetails">
-                <div class="thumbnail" style="width: auto;height: auto;margin-right: 15px;">
-                    <img src="" alt="" width="260px" height="260px">
-                </div>
+    <div class="container">
+        <div class="row" style="flex-flow: column;">
+            <div class="agencyDetails">
                 <div class="con">
                     <h3>Agency Id : {{AgencyId}}</h3>
                     <h3>Agent Id : {{AgentId}}</h3>
                 </div>
             </div>
-        </div><br>
-        <div class="row travmaksPartner">
-            <img src="" alt="" width="30px" height="30px">
-            &nbsp;&nbsp;
-            Partnered With Travmaks
-            {{partner}}
+            <div class="ShareBtn">
+                <input type="checkbox" name="features1" id="features1" value="premium">
+                <label for="features1">
+                    Share Your Page
+                </label>
+            </div>
+            <div class="ShareBtns">
+                <ul class="featured" style="--length: 5;display:flex;">
+                    <li>
+                        <a href="#" id="ShareOnWapp" data-action="share/whatsapp/share" style="--index: 0;">
+                            <img src="{%static 'img/whatsapp.gif'%}" height="46px"/>
+                            Whatsapp
+                        </a>
+                        <a href="#" target="_blank" id="ShareOnFB" style="--index: 2;">
+                            <img src="{%static 'img/facebook.gif'%}" height="46px"/>
+                            Facebook
+                        </a>
+                        <a style="--index: 4;" onclick="copyUrl();">
+                            <img src="https://img.icons8.com/color/46/000000/copy--v2.png"/>
+                            Copy Url
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="ShareOnTele" style="--index: 1;">
+                            <img src="{%static 'img/telegram.gif'%}" height="46px"/>
+                            Telegram
+                        </a>
+                        
+                        <a href="#" id="ShareByEmail" target="_blank" style="--index: 3;">
+                            <img src="{%static 'img/gmail.gif'%}" height="44px"/>
+                            Email
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <br>
         <div class="row">
-            <form class="col-lg-12" id="searchTour" action="/tour/advanced-search" method="GET"
-                onsubmit="return check1();">
-                {% csrf_token %}
-                {% if messages %}
-                {% for message in messages %}
-                <div class="col-md-12">
-                    <div class="alert alert-{{message.tags}}" role="alert">
-                        {{message}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-                {% endfor %}
-                {% endif %}
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Starting From :</label>
-                        <input type="text" class="form-control" name="startLocSearch" id="startLocSearch"
-                            placeholder="Enter Stating Location" required />
-                    </div>
-                    <div class="col-md-6">
-                        <label>Visiting To :</label>
-                        <input type="text" class="form-control" name="endLocSearch" id="endLocSearch"
-                            placeholder="Enter Visiting Location" required />
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Departure after :</label>
-                        <input type="text" class="form-control" name="startDateSearch" id="startDateSearch"
-                            placeholder="Enter Stating Date" required />
-                        <label>Returning within :</label>
-                        <input type="text" class="form-control" name="endDateSearch" id="endDateSearch"
-                            placeholder="Enter Ending Date" required />
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-around flex-column align-items-center">
-                        <div class="w-100">
-                            <label>Min Tour Duration (Dates)</label>
-                            <input type="number" name="minDuration" class="form-control" placeholder="Tour Duration"
-                                min="2">
-                        </div>
-                        <div class="w-100">
-                            <label>Max Tour Duration (Dates)</label>
-                            <input type="number" name="maxDuration" class="form-control" placeholder="Tour Duration"
-                                min="2" max="365">
-                        </div>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-md-12 mb-3 d-flex justify-content-center flex-column">
-                        <p>
-                            <label for="amount">Price range:</label><br>
-                            <input type="text" id="amount" name="amountRange" readonly
-                                style="border:0;font-weight:bold;color:#0d141c;">
-                        </p>
-                        <div id="slider-range"></div>
-                    </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="searchbtn"
-                            style="width: 150px;padding: 2px 0;border-radius: 4px;">Search</button>
-                    </div>
-                </div>
-            </form>
             <div class="col-lg-12 tourTypeSearch">
                 <span class="list active" data-filter="all">All Tour</span>
                 <span class="list" data-filter="Solo-Tour">Solo Tour</span>
@@ -605,6 +650,15 @@
                 <span class="list" data-filter="Family-Special">Family Tour</span>
                 <span class="list" data-filter="Couple-Friendly">Couple Tour</span>
             </div>
+            <div class="row travmaksPartner">
+                <img src="https://img.icons8.com/ios-glyphs/40/000000/checked--v2.png"/>
+                &nbsp;
+                <b>Partnered With Travmaks</b>
+            </div>
+        </div>
+    </div>
+    <div class="container mainContent">
+        <div class="row">    
             <div class="col-lg-12" id="tours">
                 <span class="selectbg mb-5">
                     <form action="" method="GET" id="sortTour">
@@ -617,6 +671,72 @@
                         </select>
                     </form>
                 </span>
+                <div onclick="openNavs1();" class="openNavs">
+                    <span class="openNavspan1"></span>
+                    <span class="openNavspan2"></span>
+                </div>
+                <form id="searchTour" action="/tour/advanced-search" method="GET"
+                    onsubmit="return check1();">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="col-md-12">
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                            {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Venue</label>
+                            <input type="text" class="form-control" name="startLocSearch" id="startLocSearch"
+                                placeholder="Enter Stating Location" required />
+                        </div>
+                        <div class="col-md-12 pt-1">
+                            <input type="text" class="form-control" name="endLocSearch" id="endLocSearch"
+                                placeholder="Enter Visiting Location" required />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label>Days</label>
+                            <input type="text" class="form-control" name="startDateSearch" id="startDateSearch"
+                                placeholder="Enter Stating Date" required />
+                            <input type="text" class="form-control mt-1" name="endDateSearch" id="endDateSearch"
+                                placeholder="Enter Ending Date" required />
+                        </div>
+                        <div class="mt-3 col-md-12 d-flex justify-content-around flex-column align-items-center">
+                            <div class="w-100">
+                                <label> Duration (Days)</label>
+                                <input type="number" name="minDuration" class="form-control" placeholder="Min Tour Duration"
+                                    min="2">
+                            </div>
+                            <div class="w-100 pt-1">
+                                <input type="number" name="maxDuration" class="form-control" placeholder="Max Tour Duration"
+                                    min="2" max="365">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12 mb-3 d-flex justify-content-center flex-column">
+                            <p>
+                                <label for="amount">Price</label><br>
+                                <input type="number" name="minPrice" class="form-control" placeholder="Min Price Range"
+                                    min="150" max="50000">
+                                <input type="number" name="maxPrice" class="form-control mt-1" placeholder="Max Price Range"
+                                    min="150" max="50000">
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="searchbtn"
+                                style="width: 150px;padding: 2px 0;border-radius: 4px;">Search</button>
+                        </div>
+                    </div>
+                </form>
                 <div class="tours">
                     <div class="noMatchFound">No Match Found</div>
                     {% for tour in Tour %}
@@ -663,90 +783,8 @@
                     </div>
                     {% endfor %}
                 </div>
+                
             </div>
-        </div>
-
-        <!--Pagination -->
-        <center>
-            <div class="container plagination mt-5">
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                    <a href="?page=1" class="p-last-page">First</a>
-                    &nbsp;
-                    <span class="p-circles">
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                        <i class="fa fa-circle fa-2x" aria-hidden="true"></i>
-                        <i class="fa fa-circle fa-3x" aria-hidden="true"></i>
-                    </span>
-                    &nbsp;
-                    <a href="?page={{ page_obj.previous_page_number }}" class="left-arrow-img">
-                        <img src="{%static 'img/left-arrow.svg'%}">
-                    </a>
-                    {% endif %}
-
-                    <span class="current">
-                        &nbsp;<p>
-                            {{ page_obj.number }}
-                        </p>
-                        &nbsp;
-                    </span>
-
-                    {% if page_obj.has_next %}
-
-                    <a href="?page={{ page_obj.next_page_number }}" class="right-arrow-img">
-                        <img src="{%static 'img/arrow-point-to-right.svg'%}">
-                    </a>
-
-                    &nbsp;
-                    <span class="p-circles">
-                        <i class="fa fa-circle fa-3x" aria-hidden="true"></i>
-                        <i class="fa fa-circle fa-2x" aria-hidden="true"></i>
-                        <i class="fa fa-circle" aria-hidden="true"></i>
-                    </span>
-                    &nbsp;
-
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="p-last-page">Last</a>
-
-                    {% endif %}
-                </span>
-            </div>
-        </center>
-        <!--Pagination-->
-        
-        <div class="ShareBtn">
-            <input type="checkbox" name="features1" id="features1" value="premium">
-            <label for="features1">
-                Share Your Page
-            </label>
-        </div>
-        <div class="ShareBtns">
-            <ul class="featured" style="--length: 5;display:flex;">
-                <li>
-                    <a href="#" id="ShareOnWapp" data-action="share/whatsapp/share" style="--index: 0;">
-                        <img src="{%static 'img/whatsapp.gif'%}" height="46px"/>
-                        Whatsapp
-                    </a>
-                    <a href="#" target="_blank" id="ShareOnFB" style="--index: 2;">
-                        <img src="{%static 'img/facebook.gif'%}" height="46px"/>
-                        Facebook
-                    </a>
-                    <a style="--index: 4;" onclick="copyUrl();">
-                        <img src="https://img.icons8.com/color/46/000000/copy--v2.png"/>
-                        Copy Url
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="ShareOnTele" style="--index: 1;">
-                        <img src="{%static 'img/telegram.gif'%}" height="46px"/>
-                        Telegram
-                    </a>
-                    
-                    <a href="#" id="ShareByEmail" target="_blank" style="--index: 3;">
-                        <img src="{%static 'img/gmail.gif'%}" height="44px"/>
-                        Email
-                    </a>
-                </li>
-            </ul>
         </div>
     </div>
     <div class="compareList">
@@ -769,6 +807,27 @@
     </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+    function openNavs1(){
+		if($('#searchTour').css('transform')=='matrix(0, 0, 0, 0, 0, 0)'){
+			document.querySelector('#searchTour').classList.add('opend');
+			document.querySelector('.openNavspan1').style.transform='rotate(45deg) translate(11px,11px)';
+			document.querySelector('.openNavspan1').style.width='25px';
+			document.querySelector('.openNavspan2').style.transform='rotate(-45deg)';
+        }
+		else{
+			document.querySelector('#searchTour').classList.remove('opend');
+			document.querySelector('.openNavspan1').style.transform='rotate(0deg) translate(0px,0px)';
+			document.querySelector('.openNavspan1').style.width='33px';
+			document.querySelector('.openNavspan2').style.transform='rotate(0deg)';            
+        }
+    }
+
+    if("{{partner}}"==='False'){
+        $('.travmaksPartner').css('display','none');
+    }
+    else{
+        $('.travmaksPartner').css('display','flex');
+    }
     $("input[name=features1]").change(function(){
         if($('input[name=features1]').is(':checked')){
             $('.ShareBtns').addClass('active');
