@@ -95,14 +95,14 @@ AUTH_USER_MODEL = 'accounts.User'
 WSGI_APPLICATION = 'travmaks.wsgi.application'
 
 
-
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'iycvP8wTqP',
-        'USER':'iycvP8wTqP',
-        'PASSWORD':'7qghTb2EZz',
-        'HOST':'remotemysql.com',
+        'NAME': 'travmaks',
+        'USER':'travmaks',
+        'PASSWORD':'12345678',
+        'HOST':'travmaks-database.cc6kgsf1jwme.us-east-2.rds.amazonaws.com',
         'PORT':'3306',
     }
 }
