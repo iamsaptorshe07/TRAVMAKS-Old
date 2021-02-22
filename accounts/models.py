@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # User Model For registration ---------------------------------------------------------------------------
 class UserManager(BaseUserManager):
     def create_user(self, email,password,name,DOB,gender,phNo, country,state,city,zipCode,address):
@@ -207,3 +209,29 @@ class GuideService(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='guideservice')
     service_area = models.ManyToManyField(GuideServiceArea)
     verified = models.BooleanField(default=False)
+
+
+
+class AgencyRequestCallBack(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=15)
+    agencyName = models.CharField(max_length=200)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.agencyName
+    
+
+''' Signal To Send Mail to Admin that an agency has requested for a call back'''    
+from accounts.email_sender import RequestCallBackMessageToAdmin
+
+@receiver(post_save, sender=AgencyRequestCallBack)
+def AgencyRequstMailSender(sender,instance,created,*args,**kwargs):
+    RequestCallBackMessageToAdmin(
+        instance.name,instance.email,instance.phone,
+        instance.agencyName,instance.message)
+
+
+
+

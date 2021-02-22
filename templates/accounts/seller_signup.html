@@ -383,7 +383,7 @@ font-size:12px;
 {% block body %}
 <!-- HTML Starts here -->
 <div class="icon-bar">
-  <a href="#" class="facebook">Call Us &nbsp;<i class="fa fa-phone-square fa-lg"></i></a> 
+  <a href="tel:8240568636" class="facebook">Call Us &nbsp;<i class="fa fa-phone-square fa-lg"></i></a> 
 </div>
 
 
@@ -418,36 +418,28 @@ font-size:12px;
                                 <div class="modal-body">
                                     <h2 class="mainh ml-3">Contact Us</h2>
     <div class="col-lg-12">
-	
-        <div class="row">
-            <div class="col-md-6">
+        <form class="row" action="/accounts/seller-request-a-call" method='POST'>
+            {% csrf_token %}
+            <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name *" value="" />
+                    <input type="text" class="form-control" placeholder="Name*" value="" name='name' required/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email *" value="" />
+                    <input type="email" class="form-control" placeholder="Email *" value="" name="email" required />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="phone no*" value="" name="phone" required/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Agency Name*" value="" name="agencyName" required/>
                 </div>
                 <div class="form-group">
                     <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message *"
-                        rows="3"></textarea>
+                        rows="3" name="message" required></textarea>
                 </div>
-
+                <button class="form-group btn-success" type="submit">REQUEST</button>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Last Name *" value="" />
-                </div>
-                <div class="form-group">
-                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
-                        placeholder="Your Phone *" value="" />
-                </div>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Travel Id *" value="" />
-                </div>
-                <button type="button" class="btn btn-success">Button</button>
-            </div>
-        </div>
+            </form>
     </div>
                                 </div>
                              

@@ -26,4 +26,6 @@ urlpatterns = [
     path('password-reset/email-sent',auth_views.PasswordResetDoneView.as_view(template_name='accounts/password_reset_done.html'),name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='accounts/password-reset-form.html'),name='password_reset_confirm'),
     path('password-reset-done',auth_views.PasswordResetCompleteView.as_view(template_name='accounts/password-reset-complete.html'),name='password_reset_complete'),
+    
+    path('seller-request-a-call',agencyrequestCallback,name='agency-request-call-back')
     ] 

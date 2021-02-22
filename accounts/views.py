@@ -19,6 +19,7 @@ from .tokens import activation_token
 from django.utils.dateparse import parse_date
 from django.conf import settings
 from django.contrib.auth.hashers import check_password
+from accounts.models import AgencyRequestCallBack
 #from django.template import RequestContext
 # Importing ends here ---------------------
 
@@ -576,3 +577,22 @@ def changePassword(request):
 
 
 
+def agencyrequestCallback(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        agencyName = request.POST.get('agencyName')
+        requestCallBack = AgencyRequestCallBack(
+            name = name,
+            email = email,
+            phone = phone,
+            agencyName = agencyName,
+            message = message
+        )
+        requestCallBack.save()
+        messages.success(request,"We have recived your message, Our team will call you soon \n But what are ou waiting for do signup now")
+        return redirect('sellerAgencyAccountSignup')
+    else:
+        return render(request,'404.html')
