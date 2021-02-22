@@ -453,6 +453,7 @@
 {% block travelagency_body %}
 
 <!--Put normal html here -->
+<div class="container">
 <div class="main">
 	<form class="content" method="POST"
 		action='/travelagency/myagency/addtour/{{request.user.id}}/{{request.user.userAccess.agentId}}'
@@ -721,6 +722,7 @@
 		<span class="submitbtn"><button type="sbumit">Submit</button></span>
 
 	</form>
+</div>
 </div>
 <!--Normal html ends here-->
 <!--Put your js here -->
