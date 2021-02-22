@@ -202,7 +202,7 @@ def travelerAccountsSignup(request):
                     return redirect('travelerAccountsSignup')
                 if res is False:
                     user.delete()
-                    messages.error(request, 'Internal Problem Occured')
+                    messages.error(request, 'Internal Problem Occured for mail')
                     return redirect('travelerAccountsSignup')
         except Exception as e:
             print(e)

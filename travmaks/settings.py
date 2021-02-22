@@ -16,7 +16,12 @@ SECRET_KEY = '^tl()34n(74#+)7m76z-n9#0isg)li+bbhu1edum*8&wfoq543'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'www.travmaks.in',
+    'travmaks.in',
+    'localhost',
+    '127.0.0.1'
+    ]
 
 # Overriding message tag 
 MESSAGE_TAGS = {
@@ -95,14 +100,14 @@ AUTH_USER_MODEL = 'accounts.User'
 WSGI_APPLICATION = 'travmaks.wsgi.application'
 
 
-
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'iycvP8wTqP',
-        'USER':'iycvP8wTqP',
-        'PASSWORD':'7qghTb2EZz',
-        'HOST':'remotemysql.com',
+        'NAME': 'travmaks',
+        'USER':'travmaks',
+        'PASSWORD':'12345678',
+        'HOST':'travmaks-database.cc6kgsf1jwme.us-east-2.rds.amazonaws.com',
         'PORT':'3306',
     }
 }
