@@ -19,6 +19,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'www.travmaks.in',
     'travmaks.in',
+    '3.141.194.218',
     'localhost',
     '127.0.0.1'
     ]
