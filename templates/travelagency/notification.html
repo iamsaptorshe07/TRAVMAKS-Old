@@ -1,291 +1,91 @@
 {% extends 'travelagency/travelagency_basetemplate.html' %}
 {% load static %}
-
+{% load mathfilters %}
 {% block travelagency_stylesheets %}
-<!-- Enter your CSS links / inlines CSS here-->
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    *{
-		list-style: none;	
-	}
-	body{
-		background: rgb(186,224,245);
-		background: linear-gradient(90deg, rgba(186,224,245,1) 21%, rgba(221,221,237,1) 57%, rgba(143,228,245,1) 100%);
-	}
-	main{
-        display: block;
-    }
-	.main{
-		height: auto;
-		padding: 0;
-		margin: 20px;
-		left: 0;
-		display: flex;
-		justify-content: space-between;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+    
+    th {
+    background-color: #4b6cb7;
+    color: white;
+  }
+  
+  tr:hover {
+      background-color: #4d4dff;
+      color:#fff;
+  }
+  .fa-plane{
+      color:#4B79A1;
+  }
+  .invoice {
+      position: relative;
+      background: #fff;
+      border: 1px solid #f4f4f4;
+      padding: 20px;
+      margin: 10px 25px;
+  }
+  .page-header {
+      margin: 10px 0 20px 0;
+      font-size: 22px;
+  }
+@media screen and (max-width: 850px) {
+.tble{
+transform: translate(0px,96px);
+margin:auto;
+}
+}
+div.footer {
+	text-align: right;
+	position: relative;
+	margin: 20px 5px;
+}
 
-	}
-	.content{
-		width: calc(100%);
-        max-width: 1700px !important;
-        padding: 0px!important;
-	}
-    .mytable{
-        width: 100%;
-    }
-    .mycell {
-        width: 100%;
-        display: grid;
-        grid-gap: 10px;
-        margin-bottom: 20px;
-        /* background-color: #2196F3; */
-        padding: 10px;
-        border-radius: 5px;
-        overflow-x: scroll;
-    }
+div.footer a.Cbtn{
+	padding: 10px 25px;
+	background-color: #DADADA;
+	color: #666;
+	margin: 10px 2px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-decoration: none;
+	border-radius: 3px;
+}
 
-    .gi {
-        /* background-color: rgba(255, 255, 255, 0.8); */
-        text-align: center;
-        padding: 8px;
-        font-size: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-flow: column;
-        min-width: 100px;
-    }
+div.footer a.Cbtn-primary{
+	background-color: #5AADF2;
+	color: #FFF;
+}
 
-    .gi1 {
-        grid-column: 1/ span 7;
-        grid-row: 1;
-    }
-    .gi1 div{
-        width: 100%;
-        text-align: left;
-    }
-    .gi2 {
-        grid-column: 1;
-        grid-row: 2;
-    }
-    .gi3 {
-        grid-column: 2;
-        grid-row: 2;
-    }
-    .gi4 {
-        grid-column: 3;
-        grid-row: 2;
-    }
-    .gi5 {
-        grid-column: 4;
-        grid-row: 2;
-    }
-    .gi6 {
-        grid-column: 5;
-        grid-row: 2;
-    }
-    .gi7 {
-        grid-column: 6;
-        grid-row: 2;
-    }
-    .gi8 {
-        grid-column: 7;
-        grid-row: 2;
-    }
-    .gi10 {
-        grid-column: 8;
-        grid-row: 2;
-    }
-    .gi9{
-        grid-column:1 / span 6;
-        grid-row: 4;
-        flex-flow: row;
-        padding: 5px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    .gi2x{
-        grid-column: 1;
-        grid-row: 3;
-    }
-    .gi3x{
-        grid-column: 2;
-        grid-row: 3;
-    }
-    .gi4x{
-        grid-column: 3;
-        grid-row: 3;
-    }
-    .gi5x{
-        grid-column: 4;
-        grid-row: 3;
-    }
-    .gi6x{
-        grid-column: 5;
-        grid-row: 3;
-    }
-    .gi7x{
-        grid-column: 6;
-        grid-row: 3;
-    }
-    .gi8x{
-        grid-column: 7;
-        grid-row: 3;
-    }
-    .gi10x{
-        grid-column: 8;
-        grid-row: 3;
-    }
+div.footer a.Cbtn-primary:hover{
+	background-color: #7dbef5;
+}
 
-    .gi2, .gi3, .gi4, .gi5, .gi6, .gi7, .gi8, .gi10{
-        /* border: 1px solid ; */
-        border-radius: 5px;
-        height: 50px;
-        background-color: #007bff;
-        border-color: #007bff;
-    } 
-    /* .gi6, .gi6x, .gi2, .gi2x, .gi5, .gi5x, .gi8{
-        width: 220px;
-    } */
-    .mycell{
-        border: 1px skyblue solid;
-        margin-bottom: 10px;
-    }
+div.footer a.Cbtn-danger{
+	background-color: #fc5a5a;
+	color: #FFF;
+}
 
-    @media screen and (max-width: 850px) {
-		.gi1{
-            grid-row: 1;
-            grid-column: 1/ span 2;
-        }
-        .gi1 div{
-            font-size: 19px;
-        }
-		.content{
-			width: 100%;
-			/* padding:30px; */
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-flow: column;
-			margin:80px 10px 0px 0px!important;
-			margin-top: 80px;
-		}
-        .gi1{
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-	}
-
-    @media screen and (max-width: 630px) {
-		.main{
-			width: 100%;
-			margin-left: 0;
-            left: 0;
-		}
-		.content{
-			width: 100%;
-			padding: 10px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-flow: column;
-			margin-left: 0;
-			left: 0;
-			margin-top: 80px;
-            /* overflow-x: scroll; */
-		}
-
-	}
-	.cursor-none{
-		pointer-events: none;
-	}
-	.footer-middle{
-		z-index: 5;
-	}
-</style>
-<!-- CSS ends here-->
-
+div.footer a.Cbtn-danger:hover{
+	background-color: #fd7676;
+}
+  </style>
 {% endblock travelagency_stylesheets %}
 
 {% block travelagency_body %}
-
-<!-- HTML starts here -->
-<div class="main">
-    
-    <div class="container content">
-        {% if messages %}
-{% for message in messages %}
-<div class="col-md-12 mt-3">
-    <div class="alert alert-{{message.tags}}" role="alert">
-        {{message}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</div>
-{% endfor %}
-{% endif %}
-    <h1>Incoming Order Stack</h1>
-    <br>
-    {% if Order %}
-    <div class="mytable">
-        {% for tour in Tours %}
-        <div class="mycell">
-            <div class="gi1 gi"><div style="font-size:30px;font-weight:bold;left: 0;">{{notification.tour.tourHeading}}</div></div>
-            
-            <div class="gi2 gi"><span class="gihead">Tour ID </span></div>
-            <div class="gi2x gi" style="font-weight:bold;">{{notification.tour.tourId}}</div>
-
-            <div class="gi3 gi"><span class="gihead">Starting Location </span></div>
-            <div class="gi3x gi" style="font-weight:bold;">{{notification.tour.startingLocation}}</div>
-            
-            <div class="gi4 gi"><span class="gihead">Ending Location </span></div>
-            <div class="gi4x gi" style="font-weight:bold;">{{notification.tour.endLocation}}</div>
-            
-            <div class="gi5 gi"><span class="gihead">Start Date </span></div>
-            <div class="gi5x gi" style="font-weight:bold;">{{notification.tour.startDate}}</div>
-            
-            <div class="gi6 gi"><span class="gihead">End Date</span></div>
-            <div class="gi6x gi" style="font-weight:bold;">{{notification.tour.endDate}}</div>
-            
-            <div class="gi7 gi"><span class="gihead">Seat Left After Booking Confirmation </span></div>
-            <div class="gi7x gi" style="font-weight:bold;">{{notification.tour.maximum_people}}</div>
-            
-            <div class="gi8 gi"><span class="gihead">No of people going on the tour </span></div>
-            <div class="gi8x gi" style="font-weight:bold;">{{notification.total_people}}</div>
-
-            <div class="gi10 gi"><span class="gihead">Earning</span></div>
-            <div class="gi10x gi" style="font-weight:bold;">{{notification.total_price}}</div>
-
-            <div class="gi9 gi">
-                <button type="button" class="btn-success"
-                    onclick="location.href='/travelagency/accept-package-booking-order/{{notification.order_id}}'">
-                    Accept
-                </button>
-                <button type="button" class="btn-danger"
-                    onclick="location.href='/travelagency/decline-package-booking-order/{{notification.order_id}}'">
-                    Decline
-                </button>
+<section class="tble" style="width: 100%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header">
+                   <h3 style="font-family:'Ubuntu', sans-serif;"> <i class="fa fa-plane"></i> Incoming Order Stack</h3>
+                    </div>
+                
             </div>
-        </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <h1> No New Booking Order Yet ! </h1>
-    {% endif %}
-</div>
-
-<!-- HTML ends here -->
-
-<!-- JS starts here-->
-
-<!-- JS ends here -->
-
-{% endblock travelagency_body %}
-<!-- 
-    <div class="row mb-3">
+            </div>
+        
+        <!-- Table row -->
+        <div class="row mb-3">
             <div class="col-xs-12 table-responsive">
                 {% if messages %}
                 {% for message in messages %}
@@ -325,7 +125,7 @@
                             <td>{{notification.tour.endDate}}</td>
                             <td>{{notification.tour.maximum_people}}</td>
                             <td>{{notification.total_people}}</td> 
-                            <td>{{notification.total_price}}</td>
+                            <td>{{notification.total_price|sub:notification.paid_by_user}}</td>
                             </tr>
                         </tbody>
                 </table>
@@ -340,4 +140,7 @@
         {% else %}
         <h1> Sorry No new booking Order yet! </h1>
         {% endif %}
- -->
+        </div>
+    </section>
+</section>
+{% endblock travelagency_body %}
