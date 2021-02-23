@@ -223,17 +223,17 @@
     
     <div class="container content">
         {% if messages %}
-{% for message in messages %}
-<div class="col-md-12 mt-3">
-    <div class="alert alert-{{message.tags}}" role="alert">
-        {{message}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</div>
-{% endfor %}
-{% endif %}
+        {% for message in messages %}
+        <div class="col-md-12 mt-3">
+            <div class="alert alert-{{message.tags}}" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
         <div class="mytable">
             {% for tour in Tours %}
             <div class="mycell">
@@ -271,17 +271,17 @@
                 <div class="gi8 gi"><img src="{{tour.thumbnail.url}}"><br><span style="font-weight:bold;border-bottom: 1px black solid;">Thumbnail</span></div>
                 <div class="gi9 gi">
                     <button type="button" class="deletebtn btn-success"
-                    onclick="window.open('/tour/preview/{{tour.tourId}}')">
-                    Preview
-                </button>
+                        onclick="window.open('/tour/preview/{{tour.tourId}}')">
+                        Preview
+                    </button>
                     <button type="button" class="editbtn" style="background-color: #053fae;color:whitesmoke"
                         onclick="location.href='/travelagency/agencytours/edit-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'">
                         Edit
                     </button>
                     <button type="button" class="deletebtn btn-danger"
-                    onclick="deleteCon();">
-                    Delete
-                </button>
+                        onclick="deleteCon();">
+                        Delete
+                    </button>
                 </div>
                 <script>
                     function deleteCon(){

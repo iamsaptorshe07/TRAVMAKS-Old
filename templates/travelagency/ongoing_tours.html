@@ -2,101 +2,272 @@
 {% load static %}
 
 {% block travelagency_stylesheets %}
+<!-- Enter your CSS links / inlines CSS here-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
-    
-    th {
-    background-color: #4b6cb7;
-    color: white;
-  }
-  
-  tr:hover {
-      background-color: #4d4dff;
-      color:#fff;
-  }
-  .fa-plane{
-      color:#4B79A1;
-  }
-  .invoice {
-      position: relative;
-      background: #fff;
-      border: 1px solid #f4f4f4;
-      padding: 20px;
-      margin: 10px 25px;
-  }
-  .page-header {
-      margin: 10px 0 20px 0;
-      font-size: 22px;
-  }
-    .tble:nth-child(1){
-        margin-top: 30px;
+    *{
+		list-style: none;	
+	}
+	body{
+		background: rgb(186,224,245);
+		background: linear-gradient(90deg, rgba(186,224,245,1) 21%, rgba(221,221,237,1) 57%, rgba(143,228,245,1) 100%);
+	}
+	main{
+        display: block;
+    }
+	.main{
+		height: auto;
+		padding: 0;
+		margin: 20px;
+		left: 0;
+		display: flex;
+		justify-content: space-between;
+
+	}
+	.content{
+		width: calc(100%);
+        max-width: 1700px !important;
+        padding: 0px!important;
+	}
+    .mytable{
+        width: 100%;
+    }
+    .mycell {
+        width: 100%;
+        display: grid;
+        grid-gap: 10px;
+        margin-bottom: 20px;
+        /* background-color: #2196F3; */
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: scroll;
     }
 
-@media screen and (max-width: 850px) {
-.tble{
-/* transform: translate(0px,96px); */
-overflow-x: scroll;
-margin:auto;
-}
-}
-  </style>
+    .gi {
+        /* background-color: rgba(255, 255, 255, 0.8); */
+        text-align: center;
+        padding: 8px;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        min-width: 100px;
+    }
+
+    .gi1 {
+        grid-column: 1/ span 7;
+        grid-row: 1;
+    }
+    .gi1 div{
+        width: 100%;
+        text-align: left;
+    }
+    .gi2 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .gi3 {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    .gi4 {
+        grid-column: 3;
+        grid-row: 2;
+    }
+    .gi5 {
+        grid-column: 4;
+        grid-row: 2;
+    }
+    .gi6 {
+        grid-column: 5;
+        grid-row: 2;
+    }
+    .gi7 {
+        grid-column: 6;
+        grid-row: 2;
+    }
+    .gi8 {
+        grid-column: 7;
+        grid-row: 2;
+    }
+    .gi10 {
+        grid-column: 8;
+        grid-row: 2;
+    }
+    .gi9{
+        grid-column:1 / span 6;
+        grid-row: 4;
+        flex-flow: row;
+        padding: 5px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .gi2x{
+        grid-column: 1;
+        grid-row: 3;
+    }
+    .gi3x{
+        grid-column: 2;
+        grid-row: 3;
+    }
+    .gi4x{
+        grid-column: 3;
+        grid-row: 3;
+    }
+    .gi5x{
+        grid-column: 4;
+        grid-row: 3;
+    }
+    .gi6x{
+        grid-column: 5;
+        grid-row: 3;
+    }
+    .gi7x{
+        grid-column: 6;
+        grid-row: 3;
+    }
+    .gi8x{
+        grid-column: 7;
+        grid-row: 3;
+    }
+    .gi10x{
+        grid-column: 8;
+        grid-row: 3;
+    }
+
+    .gi2, .gi3, .gi4, .gi5, .gi6, .gi7, .gi8, .gi10{
+        /* border: 1px solid ; */
+        border-radius: 5px;
+        height: 50px;
+        background-color: #007bff;
+        border-color: #007bff;
+    } 
+    /* .gi6, .gi6x, .gi2, .gi2x, .gi5, .gi5x, .gi8{
+        width: 220px;
+    } */
+    .mycell{
+        border: 1px skyblue solid;
+        margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 850px) {
+		.gi1{
+            grid-row: 1;
+            grid-column: 1/ span 2;
+        }
+        .gi1 div{
+            font-size: 19px;
+        }
+		.content{
+			width: 100%;
+			/* padding:30px; */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: column;
+			margin:80px 10px 0px 0px!important;
+			margin-top: 80px;
+		}
+        .gi1{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+	}
+
+    @media screen and (max-width: 630px) {
+		.main{
+			width: 100%;
+			margin-left: 0;
+            left: 0;
+		}
+		.content{
+			width: 100%;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: column;
+			margin-left: 0;
+			left: 0;
+			margin-top: 80px;
+            /* overflow-x: scroll; */
+		}
+
+	}
+	.cursor-none{
+		pointer-events: none;
+	}
+	.footer-middle{
+		z-index: 5;
+	}
+</style>
+<!-- CSS ends here-->
+
 {% endblock travelagency_stylesheets %}
 
 {% block travelagency_body %}
-<section class="tble" style="width: 100%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-    <section class="invoice">
-        <!-- title row -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="page-header">
-                   <h3 style="font-family:'Ubuntu', sans-serif;"> <i class="fa fa-plane"></i> Ongoing Tour</h3>
-                    </div>
+
+<!-- HTML starts here -->
+<div class="main">
+    
+    <div class="container content">
+        {% if messages %}
+{% for message in messages %}
+<div class="col-md-12 mt-3">
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+        <div class="mytable">
+            {% for tour in Tours %}
+            <div class="mycell">
+                <div class="gi1 gi"><div style="font-size:30px;font-weight:bold;left: 0;">{{tour.tour.tourHeading}}</div></div>
+                <div class="gi2 gi"><span class="gihead">Order ID </span></div>
+                <div class="gi2x gi" style="font-weight:bold;">{{tour.order_id}}</div>
+
+                <div class="gi3 gi"><span class="gihead">Date </span></div>
+                <div class="gi3x gi" style="font-weight:bold;">{{tour.creation_date}}</div>
                 
+                <div class="gi4 gi"><span class="gihead">Booking Status </span></div>
+                <div class="gi4x gi" style="font-weight:bold;">{{tour.status }}</div>
+                
+                <div class="gi5 gi"><span class="gihead">Agent Approval </span></div>
+                <div class="gi5x gi" style="font-weight:bold;">{{tour.agent_approval}}</div>
+                
+                <div class="gi6 gi"><span class="gihead">Customer Name </span></div>
+                <div class="gi6x gi" style="font-weight:bold;">{{tour.customer_name}}</div>
+                
+                <div class="gi7 gi"><span class="gihead">Total People </span></div>
+                <div class="gi7x gi" style="font-weight:bold;">{{tour.total_people}}</div>
+                
+                <div class="gi8 gi"><span class="gihead">Customer Email </span></div>
+                <div class="gi8x gi" style="font-weight:bold;">{{tour.customer_email}}</div>
+                
+                <div class="gi10 gi"><span class="gihead">Customer Phone </span></div>
+                <div class="gi10x gi" style="font-weight:bold;">{{tour.customer_phone}}</div>
+                
+                <div class="gi9 gi">
+                    <b>Total Paid :</b> {{tour.paid_by_user}}
+                </div>
             </div>
+            {% endfor %}
         </div>
-        
-        <!-- Table row -->
-        <div class="row">
-            <div class="col-xs-12 table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Order Id</th>
-                            <th>Date</th>
-                            <th>Tour Name</th>
-                            <th>Booking Status</th>
-                            <th>Agent approve</th>
-                            <th>Booked By</th>
-                            <th>Total Members</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Total Paid</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for tour in Tours %}
-                        <tr>
-                            <td>{{tour.order_id}}</td>
-                            <td>{{tour.creation_date}}</td>
-                            <td>{{tour.tour.tourHeading }}</td>
-                            <td>{{tour.status }}</td>
-                            <td>{{tour.agent_approval}}</td>
-                            <td>{{tour.customer_name}}</td>
-                            <td>{{tour.total_people}}</td>
-                            <td>{{tour.customer_email}}</td>
-                            <td>{{tour.customer_phone}}</td>
-                            <td>{{tour.paid_by_user}}</td>
-                        </tr>
+    </div>
+</div>
 
-                        {% endfor %}
-                        
+<!-- HTML ends here -->
 
+<!-- JS starts here-->
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-</section>
+<!-- JS ends here -->
+
 {% endblock travelagency_body %}
