@@ -188,14 +188,16 @@
         // e.preventDefault();
         var catid;
         catid = $(this).attr("data-catid");
+        console.log(catid);
         $.ajax({
             'url': "/traveller/wishlist",
             'type':"POST",
             'data':{
                 post_id: catid
             },
-            'success': function( data ) 
+            'success': function( data )
             {
+                window.location.reload();
             }
         });
     });
