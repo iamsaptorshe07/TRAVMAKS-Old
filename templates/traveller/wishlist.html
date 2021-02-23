@@ -136,12 +136,12 @@ body{
             <!-- Item-->
             {% if Wishlist %}
             {% for item in Wishlist %}
-            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-trash"></i></span>
+            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item" id="{{item.tour.tourId}}"><i class="fa fa-trash"></i></span>
                 <div class="px-3 my-3">
                     <a class="cart-item-product" href="#">
                         <div class="cart-item-product-thumb"><img src="{{item.tour.thumbnail.url}}" alt="Product"></div>
                         <div class="cart-item-product-info">
-                            <h4 class="cart-item-product-title">{{ item.tour.tourHeading }}</h4>
+                            <h4 class="cart-item-product-title" >{{ item.tour.tourHeading }}</h4>
                             <div class="text-lg text-body font-weight-medium pb-1">{{item.tour.price}}</div><span>Availability: <span class="text-success font-weight-medium">In Stock</span></span>
                         </div>
                     </a>
