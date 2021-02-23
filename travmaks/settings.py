@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'api.travelagencyAPI',
     'api.travellerAPI',
 
+    'django_cleanup', # To remove the unused media files
+
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

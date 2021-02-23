@@ -1,6 +1,6 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
-
+{% load mathfilters %}
 <!-- Stylesheets starts-->
 {% block stylesheets %}
 <style>
@@ -91,11 +91,19 @@
 
                     <div class="col-md-5">
                         <ul style="list-style-type:none; margin-top:30px;">
-                            <li><small><b>Agency Id</b>&nbsp;:{{tour.agency.agency_Id}}&nbsp;</small></li>
-                            <li><small><b>Agent Id</b>&nbsp;:{{tour.agent.userAccess.agentId}}&nbsp;</small></li>
                             <li><small><b>Tour Id</b> &nbsp;:{{tour.tour.tourId}}&nbsp;</small></li>
                             <li><small><b>Total People</b>&nbsp;:{{tour.total_people}}&nbsp;</small></li>
-                            <li><small><b>Amount</b>&nbsp;:{{tour.paid_by_user}}&nbsp;</small></li>
+                            <li><small><b>Amount To be Paid</b>&nbsp;:{{tour.total_price |sub:tour.paid_by_user}}&nbsp;</small></li>
+                            <li><small><b>Amount Already Paid</b>&nbsp;:{{tour.paid_by_user}}&nbsp;</small></li>
+                            <li><small><b>Total Amount</b>&nbsp;:{{tour.total_price}}&nbsp;</small></li>
+                            <li><small><b>Agent Name</b>&nbsp;:{{tour.agent.name}}</small></li>
+                            <li><small><b>Agent Id</b>&nbsp;:{{tour.agent.userAccess.agentId}}</small></li>
+                            <li><small><b>Agent email</b>&nbsp;:{{tour.agent.email}}</small></li>
+                            <li><small><b>Agent contact no</b>&nbsp;:{{tour.agent.phNo}}</small></li>
+                            <li><small><b>Agency Name</b>&nbsp;:{{tour.agent.userAgency.agencyName}}</small></li>
+                            <li><small><b>Agency Id</b>&nbsp;:{{tour.agent.userAgency.agency_Id}}</small></li>
+                            <li><small><b>Agency Email</b>&nbsp;:{{tour.agent.userAgency.agencyEmail}}</small></li>
+                            <li><small><b>Agency Contact No</b>&nbsp;:{{tour.agent.userAgency.agencyPhNo}}</small></li>
                         </ul>
                     </div>
 
@@ -110,6 +118,7 @@
             </div>
         </div>
     </div>
+    <hr>
     {% endfor %}
 
     <!-- <script>

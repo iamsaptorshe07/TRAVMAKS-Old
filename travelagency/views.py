@@ -340,9 +340,9 @@ def booking_history(request,agentId):
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
             total_profit=0
-            tours = Order.objects.filter(agent=user)
+            tours = Order.objects.filter(agent=user,agent_approval=True,status=True).order_by('-id')
             for i in tours:
-                total_profit=total_profit+i.paid_by_user
+                total_profit=total_profit+(i.total_price-i.paid_by_user)
             
             print(total_profit)
             context = {
@@ -359,7 +359,7 @@ def upcoming_tours(request,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
-            tours = Order.objects.filter(agent=user)
+            tours = Order.objects.filter(agent=user,agent_approval=True,status=True).order_by('-id')
             Tour=[]
             for i in tours:
                 print(i)
@@ -378,7 +378,7 @@ def ongoing_tours(request,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
-            tours = Order.objects.filter(agent=user)
+            tours = Order.objects.filter(agent=user,agent_approval=True,status=True).order_by('-id')
             Tour=[]
             for i in tours:
                 if i.tour.startDate < date.today() and date.today() < i.tour.endDate :

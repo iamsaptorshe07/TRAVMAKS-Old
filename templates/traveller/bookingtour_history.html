@@ -68,7 +68,7 @@
 	<ul style="list-style-type:none;">
                             <li style="font-size:13px; margin-left:2px;">Total</li>
                             <li style="font-size:13px;">
-                                <div class=" text-muted"><i class="fa fa-inr"></i>₹{{order.paid_by_user}} 
+                                <div class=" text-muted"><i class="fa fa-inr"></i>₹{{order.total_price}} 
                                 </div>
                    
                     </li>
@@ -109,6 +109,9 @@
                             <li><small><b>Ending Date</b>&nbsp;:&nbsp; {{order.tour.endDate}}</small></li>
                             <li><small><b>Starting Locatin</b>&nbsp;:&nbsp; {{order.tour.startingLocation}}</small></li>
                             <li><small><b>Ending Locatin</b>&nbsp;: &nbsp;{{order.tour.endLocation}}</small></li>
+                            {% if order.agent_approval == False %}
+                            <li><small><b>Cancelled By Agent</b></small></li>
+                            {% endif %}
                         </ul>
 
                     </div>
@@ -118,10 +121,6 @@
                         <a href="/traveller/generate-invoice/order={{order.order_id}}">
                             <button type="button" class="btn btn-block btn-dark">Invoice</button>
                         </a><br>
-
-                        <a href="/beta">
-                            <button type="button" class="btn btn-block btn-dark">Ticket</button>
-                        </a>
                     </div>
                     <div class="modal fade" id="rattingModal{{order.order_id}}" tabindex="-1" role="dialog" 
                     aria-labelledby="rattingModalTitle" aria-hidden="true">
@@ -154,7 +153,7 @@
                     </div>
                 </div>
         </div>
-    <div class="card-footer text-muted">2 days ago</div>
+    
 </div>
 </div><br>
 

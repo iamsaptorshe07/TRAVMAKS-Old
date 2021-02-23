@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.contrib import messages
 # Homepage Function
 def index(request):
-    tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+    tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1).order_by('-id')
     context = {'Tour' : tour}
     print(request.build_absolute_uri())
     return render(request,'home.html', context=context)
@@ -61,3 +61,4 @@ def downloadApp(request):
 
 def betaMode(request):
     return render(request,'beta.html')
+

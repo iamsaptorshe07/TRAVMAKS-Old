@@ -16,7 +16,7 @@ def bookingHistory(request):
     user = request.user
     if request.method=='GET':
         if user.is_authenticated and request.session['access_type']=='traveller':
-            bookings = Order.objects.filter(customer=user).order_by('-id')
+            bookings = Order.objects.filter(customer=user,status=True).order_by('-id')
             context = {
                 'Bookings':bookings,
 
@@ -77,7 +77,7 @@ def ongoingTour(request,userId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
         if user.userAccess.userId == userId:
-            tours = Order.objects.filter(customer=user)
+            tours = Order.objects.filter(customer=user,agent_approval=True,status=True).order_by('id')
             Tour=[]
             for i in tours:
                 if i.tour.startDate < date.today() and date.today() < i.tour.endDate :
@@ -97,7 +97,7 @@ def upcomingTour(request,userId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
         if user.userAccess.userId == userId:
-            tours = Order.objects.filter(customer = request.user,status=True,agent_approval=True)
+            tours = Order.objects.filter(customer = request.user,status=True,agent_approval=True).order_by('-id')
             Tour=[]
             for i in tours:
                 print(i)

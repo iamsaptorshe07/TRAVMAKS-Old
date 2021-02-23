@@ -1,5 +1,6 @@
 {% extends 'travelagency/travelagency_basetemplate.html' %}
 {% load static %}
+{% load mathfilters %}
 
 {% block travelagency_stylesheets %}
 <style>
@@ -62,16 +63,15 @@
                     <thead>
                         <tr>
                             <th>Order Id</th>
-                            <th>Date</th>
+                            <th>Order Time</th>
                             <th>Tour Name</th>
                             <th>Booking Status</th>
-                            <th>Agent approve</th>
+                            <th>Your Approval</th>
                             <th>Booked By</th>
                             <th>Total Members</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Total Paid</th>
-
+                            <th>Customer Email</th>
+                            <th>Customer Phone Number</th>
+                            <th>To be Paid by customer to you</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,9 +86,8 @@
                             <td>{{tour.total_people}}</td>
                             <td>{{tour.customer_email}}</td>
                             <td>{{tour.customer_phone}}</td>
-                            <td>{{tour.paid_by_user}}</td>
+                            <td>{{tour.total_price |sub:tour.paid_by_user}}</td>
                         </tr>
-
                         {% endfor %}
                         
 

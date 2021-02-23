@@ -1,6 +1,6 @@
 {% extends 'travelagency/travelagency_basetemplate.html' %}
 {% load static %}
-
+{% load mathfilters %}
 {% block travelagency_stylesheets %}
 <style>
     /* body{
@@ -118,7 +118,7 @@
                             <td>{{tour.tour.startDate}}</td>
                             <td>{{tour.tour.endDate}}</td>
                             <td>{{tour.total_people}}</td>
-                            <td id="price">{{tour.paid_by_user}}</td>
+                            <td id="price">{{tour.total_price | sub:tour.paid_by_user}}</td>
                         </tr>
 
 

@@ -3,6 +3,7 @@ cffi==1.14.4
 chardet==4.0.0
 cryptography==3.2.1
 Django==2.2
+django-cleanup==5.1.0
 django-crispy-forms==1.9.2
 django-crontab==0.7.1
 django-extensions==3.0.9
