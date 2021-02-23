@@ -45,12 +45,12 @@
                 <div class="row">
 
                     <div class="col-md-4">
-                        <h3>TRAVMAKS CO.</h3>
+                        <h3>{{tour.agent.userAgency.agencyName}}</h3>
                     </div>
-
+            
                     <div class="col-md-4">
                         <h6>Booked by:</h6>
-                        <a id="popoverData{{tour.id}}" href="#"
+                        <a id="popoverData" href="#"
                             data-content="<b>Billing Details</b>
                             <br>{{tour.customer_name}} 
                             <br>{{tour.customer_email}}
@@ -61,7 +61,7 @@
                             {{tour.customer_name}}</a>
 
                         <script>
-                            $('#popoverData{{tour.id}}').popover();
+                            $('#popoverData').popover();
                             $('#popoverOption').popover({ trigger: "hover" });
                         </script>
 
@@ -86,7 +86,7 @@
 
                     <div class="col-md-4">
                         <h5>{{tour.tour.tourHeading}}</h5>
-                        <img src="{{tour.tour.thumbnail.url}}" alt="" style="height:200px; width:auto;">
+                        <img src="{{tour.tour.thumbnail.url}}" alt="" style="height:200px; width:250px;">
                     </div>
 
                     <div class="col-md-5">
