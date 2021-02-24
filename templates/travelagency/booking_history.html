@@ -2,312 +2,101 @@
 {% load static %}
 
 {% block travelagency_stylesheets %}
-<!-- Enter your CSS links / inlines CSS here-->
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    *{
-		list-style: none;	
-	}
-	body{
-		background: rgb(186,224,245);
-		background: linear-gradient(90deg, rgba(186,224,245,1) 21%, rgba(221,221,237,1) 57%, rgba(143,228,245,1) 100%);
-	}
-	main{
-        display: block;
-    }
-	.main{
-		height: auto;
-		padding: 0;
-		margin: 20px;
-		left: 0;
-		display: flex;
-		justify-content: space-between;
+    /* body{
+   background: linear-gradient(to right, #000428, #004e92);  
+     }*/
 
-	}
-	.content{
-		width: calc(100%);
-        max-width: 1700px !important;
-        padding: 0px!important;
-	}
-    .mytable{
-        width: 100%;
-    }
-    .mycell {
-        width: 100%;
-        display: grid;
-        grid-gap: 10px;
-        margin-bottom: 20px;
-        /* background-color: #2196F3; */
-        padding: 10px;
-        border-radius: 5px;
-        overflow-x: scroll;
+    th {
+        background-color: #4b6cb7;
+        color: white;
     }
 
-    .gi {
-        /* background-color: rgba(255, 255, 255, 0.8); */
-        text-align: center;
-        padding: 8px;
-        font-size: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-flow: column;
-        min-width: 100px;
-        word-break: break-word;
+    tr:hover {
+        background-color: #4d4dff;
+        color: #fff;
     }
 
-    .gi1 {
-        grid-column: 1/ span 7;
-        grid-row: 1;
-    }
-    .gi1 div{
-        width: 100%;
-        text-align: left;
-    }
-    .gi2 {
-        grid-column: 1;
-        grid-row: 2;
-    }
-    .gi3 {
-        grid-column: 2;
-        grid-row: 2;
-    }
-    .gi4 {
-        grid-column: 3;
-        grid-row: 2;
-    }
-    .gi5 {
-        grid-column: 4;
-        grid-row: 2;
-    }
-    .gi6 {
-        grid-column: 5;
-        grid-row: 2;
-    }
-    .gi7 {
-        grid-column: 6;
-        grid-row: 2;
-    }
-    .gi8 {
-        grid-column: 7;
-        grid-row: 2;
-    }
-    .gi10 {
-        grid-column: 8;
-        grid-row: 2;
-    }
-    .gi9{
-        grid-column:1 / span 6;
-        grid-row: 4;
-        flex-flow: row;
-        padding: 5px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    .gi2x{
-        grid-column: 1;
-        grid-row: 3;
-    }
-    .gi3x{
-        grid-column: 2;
-        grid-row: 3;
-    }
-    .gi4x{
-        grid-column: 3;
-        grid-row: 3;
-    }
-    .gi5x{
-        grid-column: 4;
-        grid-row: 3;
-    }
-    .gi6x{
-        grid-column: 5;
-        grid-row: 3;
-    }
-    .gi7x{
-        grid-column: 6;
-        grid-row: 3;
-    }
-    .gi8x{
-        grid-column: 7;
-        grid-row: 3;
-    }
-    .gi10x{
-        grid-column: 8;
-        grid-row: 3;
+    .invoice {
+        position: relative;
+        background: #fff;
+        border: 1px solid #f4f4f4;
+        padding: 20px;
+        margin: 10px 10px;
     }
 
-    .gi2, .gi3, .gi4, .gi5, .gi6, .gi7, .gi8, .gi10{
-        /* border: 1px solid ; */
-        border-radius: 5px;
-        height: 50px;
-        background-color: #007bff;
-        border-color: #007bff;
-    } 
-    .gi2, .gi2x{
-        min-width: 220px;
+    .page-header {
+        margin: 10px 0 20px 0;
+        font-size: 22px;
     }
-    .mycell{
-        border: 1px skyblue solid;
-        margin-bottom: 10px;
+
+    .btn-cool-blues {
+        background: #fc4a1a;
+        background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
+        background: linear-gradient(to right, #f7b733, #fc4a1a);
+        color: #fff;
+        border: 3px solid #eee;
+    }
+
+    .btn-rounded {
+        border-radius: 35px;
     }
 
     @media screen and (max-width: 850px) {
-		.gi1{
-            grid-row: 1;
-            grid-column: 1/ span 2;
+        .tble {
+            transform: translate(0px, 96px);
+            margin: auto;
         }
-        .gi1 div{
-            font-size: 19px;
-        }
-		.content{
-			width: 100%;
-			/* padding:30px; */
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-flow: column;
-			margin:80px 10px 0px 0px!important;
-			margin-top: 80px;
-		}
-        .gi1{
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-	}
 
-    @media screen and (max-width: 630px) {
-		.main{
-			width: 100%;
-			margin-left: 0;
-            left: 0;
-            padding: 0 10px;
-		}
-		.content{
-			width: 100%;
-			padding: 10px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-flow: column;
-			margin-left: 0;
-			left: 0;
-			margin-top: 80px;
-            /* overflow-x: scroll; */
-		}
+        p {
+            margin-right: 80px !important;
+        }
 
-	}
-	.cursor-none{
-		pointer-events: none;
-	}
-	.footer-middle{
-		z-index: 5;
-	}
-    .btn-cool-blues {
-        border-radius: 10px;
-        background: #fc4a1a;
-        background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
-        background: linear-gradient(to right, #f7b733, #fc4a1a);
-        color: #fff;
-        border: 3px solid #eee;
-    }
-    .totalProfit{
-        width: 200px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        border-radius: 5px;
+        .btn {
+            margin-right: 60px !important;
+        }
     }
 </style>
-<!-- CSS ends here-->
-
 {% endblock travelagency_stylesheets %}
-
 {% block travelagency_body %}
+<section class="tble" style="width: 95%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); overflow-x:hidden;">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-center ml-2"> <i class="fa fa-building"></i> TRAVMAKS - A MAKS CUBE Product </h4>
 
-<!-- HTML starts here -->
-<div class="main">
-    
-    <div class="container content">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="col-md-12 mt-3">
-            <div class="alert alert-{{message.tags}}" role="alert">
-                {{message}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            </div><!-- /.col -->
+            <div class="col-md-6 text-right ml-auto">
+                <p class="font-weight-bold mb-1" style="margin-right:22px;">My Booking Record</p><br>
+                <button class="btn btn-cool-blues btn-rounded"><i class="fa fa-tachometer"></i>&nbsp;Analytical
+                    Dashboard</button>
             </div>
         </div>
-        {% endfor %}
-        {% endif %}
+        <!-- info row -->
+        <div class="row invoice-info">
 
-        <div class="mytable">
-            {% for tour in Tours %}
-            <div class="mycell">
-                <div class="gi1 gi"><div style="font-size:30px;font-weight:bold;left: 0;">{{tour.tour.tourHeading}}</div></div>
-                <div class="gi2 gi"><span class="gihead">Tour ID </span></div>
-                <div class="gi2x gi" style="font-weight:bold;">{{tour.tour.tourId}}</div>
+        </div><!-- /.row -->
 
-                <div class="gi3 gi"><span class="gihead">Starting Location </span></div>
-                <div class="gi3x gi" style="font-weight:bold;">{{tour.tour.startingLocation}}</div>
-                
-                <div class="gi4 gi"><span class="gihead">Ending Location </span></div>
-                <div class="gi4x gi" style="font-weight:bold;">{{tour.tour.endLocation}}</div>
-                
-                <div class="gi5 gi"><span class="gihead">Start Date </span></div>
-                <div class="gi5x gi" style="font-weight:bold;">{{tour.tour.startDate}}</div>
-                
-                <div class="gi6 gi"><span class="gihead">End Date</span></div>
-                <div class="gi6x gi" style="font-weight:bold;">{{tour.tour.endDate}}</div>
-                
-                <div class="gi7 gi"><span class="gihead">Total People </span></div>
-                <div class="gi7x gi" style="font-weight:bold;">{{tour.total_people}}</div>
-                
-                <div class="gi9 gi">
-                    &nbsp;&nbsp;<b>Profit On Tour :</b> &nbsp;{{tour.total_price}}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+        <!-- Table row -->
         <br>
-        <div class="totalProfit btn-success">
-            Total Profit : {{ Profit }}
-        </div><br>
-        <button class="btn btn-cool-blues btn-rounded"><i class="fa fa-tachometer"></i>&nbsp;Analytical
-            Dashboard
-        </button><br>
-    </div>
-</div>
-
-<!-- HTML ends here -->
-
-<!-- JS starts here-->
-
-<!-- JS ends here -->
-
-{% endblock travelagency_body %}
-<!-- 
-    .btn-cool-blues {
-        background: #fc4a1a;
-        background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
-        background: linear-gradient(to right, #f7b733, #fc4a1a);
-        color: #fff;
-        border: 3px solid #eee;
-    }
-    <button class="btn btn-cool-blues btn-rounded"><i class="fa fa-tachometer"></i>&nbsp;Analytical
-        Dashboard
-    </button>
-
-                    
-                <h5 style="font-size:25px; ">Total Profit</h5>
-                <b style="font-size:20px;">{{ Profit }}</b>
-    <tr>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="col-md-12 mt-3">
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                        <h3>{{message}}</h3>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <table class="table">
+                    <thead>
+                        <tr>
                             <th>Tour Id</th>
                             <th>Tour Name</th>
                             <th>Starting Location</th>
@@ -329,8 +118,21 @@
                             <td>{{tour.tour.startDate}}</td>
                             <td>{{tour.tour.endDate}}</td>
                             <td>{{tour.total_people}}</td>
-                            <td id="price">{{tour.total_price}}</td>
+                            <td id="price">{{tour.paid_by_user}}</td>
                         </tr>
-                        
-            {% endfor %}
- -->
+
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-12 text-white text-center" style="background-color: #4b6cb7;">
+                <h5 style="font-size:25px; ">Total Profit</h5>
+                <b style="font-size:20px;">{{ Profit }}</b>
+            </div>
+        </div>
+
+    </section>
+</section>
+{% endblock travelagency_body %}
