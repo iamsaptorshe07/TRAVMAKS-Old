@@ -145,9 +145,13 @@ class WishListAPI(APIView):
                 for i in data:
                     site = str(get_current_site(request))
                     tour = Tour.objects.get(id=i['tour'])
-                    i['tour_name']=tour.tourHeading
-                    i['tour_thumbnail']=site + tour.thumbnail.url
-                    i['tour_slug']=tour.tourSlug
+                    i['tourHeading']=tour.tourHeading
+                    i['thumbnail']=site + tour.thumbnail.url
+                    i['tourSlug']=tour.tourSlug
+                    i['startDate']=tour.startDate
+                    i['endDate']=tour.endDate
+                    i['startingLocation']=tour.startingLocation
+                    i['endLocation']=tour.endLocation
                 return Response(
                     data = {
                     'status':200,
