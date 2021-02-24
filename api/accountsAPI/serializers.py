@@ -70,13 +70,14 @@ class AgencySerializer(serializers.ModelSerializer):
         model = AgencyDetail
         fields = [
             'user',
-            'agencyName','agency_Id','agencyPhNo','agencyCountry','agencyCity','agencyState',
+            'agencyName','agency_Id','agency_logo','agencyPhNo','agencyCountry','agencyCity','agencyState',
             'agencyZipCode','govApproved','govApprovedId','agencyAddress'
         ]
         def create(self,validate_data):
             agency = AgencyDetail(
                 user = validate_data['user'],
                 agencyName = validate_data['agencyName'],
+                agency_logo = validate_data['agency_logo']
                 agency_Id = validate_data['agency_Id'],
                 agencyPhNo = validate_data['agencyPhNo'],
                 agencyCountry = validate_data['agencyCountry'],
