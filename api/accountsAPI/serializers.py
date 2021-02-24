@@ -77,7 +77,7 @@ class AgencySerializer(serializers.ModelSerializer):
             agency = AgencyDetail(
                 user = validate_data['user'],
                 agencyName = validate_data['agencyName'],
-                agency_logo = validate_data['agency_logo']
+                agency_logo = validate_data['agency_logo'],
                 agency_Id = validate_data['agency_Id'],
                 agencyPhNo = validate_data['agencyPhNo'],
                 agencyCountry = validate_data['agencyCountry'],
