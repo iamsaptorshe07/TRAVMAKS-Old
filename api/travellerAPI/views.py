@@ -152,6 +152,7 @@ class WishListAPI(APIView):
                     i['endDate']=tour.endDate
                     i['startingLocation']=tour.startingLocation
                     i['endLocation']=tour.endLocation
+                    i['price']=tour.price
                 return Response(
                     data = {
                     'status':200,
