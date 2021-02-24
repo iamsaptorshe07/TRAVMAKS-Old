@@ -21,3 +21,25 @@ def RequestCallBackMessageToAdmin(name,email,phone,agencyName,message):
         fail_silently=True
 
     )
+
+
+def sellerAccountApproovedMail(agencyName,agencyId,agentId,destinationEmail):
+    mail_subject = "{} is now verified and a TRAVMAKS partner".format(agencyName)
+    toEmail = destinationEmail
+    message = """ 
+            Your agency {} is now verified and you can start adding tours. For any query you 
+            can call +91 6290088603 / +91 8240568636. Or you can mail agencysupport@travmaks.in .
+            Your agency name = {}
+            Your unique agency-Id = {}
+            Your unique agent-Id = {}
+            """.format(agencyName,agencyName,agencyId,agentId)
+    print(message)
+    send_mail(
+        mail_subject,
+        message,
+        from_email = EMAIL_HOST_USER, 
+        recipient_list = toEmail,
+        fail_silently=True
+
+    )
+    

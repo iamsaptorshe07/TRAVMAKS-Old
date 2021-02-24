@@ -295,6 +295,7 @@ class AcceptPayment(APIView):
                     tour = order.tour
                     sit_left = tour.maximum_people - order.total_people
                     tour.maximum_people = sit_left if sit_left>0 else 0
+                    tour.updated = True
                     tour.save()
                     return Response(
                         data={

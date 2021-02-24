@@ -1,7 +1,11 @@
 from django.db import models
 from accounts.models import *
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from PIL import Image
-    
+from travelagency.email_sender import *
+from datetime import datetime    
+
 class Tour(models.Model):
     TOUR_TYPE = (
         ('Family-Special','Family-Special'), 
@@ -38,11 +42,10 @@ class Tour(models.Model):
     last_booking_date = models.DateField()
     specialOffer = models.BooleanField(default=False)
     specialOfferDescription = models.TextField(blank=True,null=True)
-
-    creationDate = models.DateField(auto_now_add=True)
+    creationDateTime = models.DateTimeField(auto_now_add=True)
     othersThings = models.TextField(blank=True,null=True)
     tags = models.CharField(max_length=300,blank=True,null=True)
-    
+    updated = models.BooleanField(default=False)
     publish_mode = models.BooleanField(default=False)
 
     #### resize image
@@ -59,6 +62,14 @@ class Tour(models.Model):
         
     def __str__(self):
         return self.tourHeading
+
+
+@receiver(post_save,sender=Tour)
+def tourPublishedMail(sender,instance,created,*args,**kwargs):
+    tour = instance
+    if tour.publish_mode and tour.updated is False:
+        tourPublishedMailSender(tour)
+post_save.connect(tourPublishedMail,sender=Tour)
 
 
 class TourImage(models.Model):

@@ -451,8 +451,10 @@ def agencyRegister(request):
                 agency = AgencyDetail(
                     user=user,
                     agencyName=request.POST.get('name'),
+                    agency_logo = request.FILES.get('logo'),
                     agency_Id = 'AGEN'+str(user.userAccess.agentId[4:]),
                     agencyPhNo=request.POST.get('phone'),
+                    agencyEmail = request.POST.get('agencyEmail'),
                     agencyCountry=request.POST.get('country'),
                     agencyCity=request.POST.get('city'),
                     agencyState=request.POST.get('state'),
@@ -540,7 +542,12 @@ def userProfile(request, account_type, uid):
                         return render(request, 'accounts/travelleraccountedit.html')
                     elif account_type == 'seller':
                         if AgencyDetail.objects.filter(user=user).exists():
-                            return render(request, 'accounts/selleraccountedit.html')
+                            agency = AgencyDetail.objects.get(user=user)
+                            if agency.verified:
+                                return render(request, 'accounts/selleraccountedit.html')
+                            else:
+                                messages.warning(request,'In order to proceed register your agency first')
+                                return redirect('RegisterAgency')
                         else:
                             messages.warning(request,'In order to proceed register your agency first')
                             return redirect('RegisterAgency')

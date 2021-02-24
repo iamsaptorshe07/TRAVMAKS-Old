@@ -13,13 +13,18 @@ def travelagency_home(request,agid):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if AgencyDetail.objects.filter(user=user).exists():
-            if user.userAccess.agentId == agid:
-                if request.method == 'GET':
-                    return render(request,'travelagency/travelagent_home.html')
+            agency = AgencyDetail.objects.get(user=user)
+            if agency.verified:
+                if user.userAccess.agentId == agid:
+                    if request.method == 'GET':
+                        return render(request,'travelagency/travelagent_home.html')
+                    else:
+                        return render(request,'forbidden.html')
                 else:
                     return render(request,'forbidden.html')
             else:
-                return render(request,'forbidden.html')
+                messages.warning(request,'In order to proceed Your agency should be approved')
+                return redirect('RegisterAgency')
         else:
             messages.warning(request,'In order to add your tour, register your agency')
             return redirect('RegisterAgency')
@@ -395,9 +400,11 @@ def ongoing_tours(request,agentId):
 def bookingNotification(request):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
-        order = Order.objects.filter(agent=user,status=True,agent_approval=False)
+        order = Order.objects.filter(agent=user,status=True,agent_approval=False).order_by('-id')
+        count = len(order)
         context = {
             'Order':order,
+            'count':count
         }
         return render(request,'travelagency/notification.html',context=context)
     else:

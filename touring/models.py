@@ -2,6 +2,9 @@ from django.db import models
 from accounts.models import *
 from travelagency.models import *
 from datetime import datetime
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from touring.email_sender import *
 # Create your models here.
 class Order(models.Model):
     order_id = models.CharField(max_length=255,unique=True)
@@ -23,6 +26,16 @@ class Order(models.Model):
 
     def __str__(self):
         return self.order_id
+
+@receiver(post_save,sender=Order)
+def orderRecievedMail(sender,instance,created,*args,**kwargs):
+    order = instance
+    if order.status is True and order.agent_approval is False:
+        orderRecieveMailSender(order)
+    if order.status is True and order.agent_approval is True:
+        orderAcceptMailSender(order)
+        
+
 
 class Payment(models.Model):
     Order = models.OneToOneField(Order,on_delete=models.CASCADE, related_name='Order')

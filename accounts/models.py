@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+from accounts.email_sender import *
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 # User Model For registration ---------------------------------------------------------------------------
@@ -178,8 +179,9 @@ class GovId(models.Model):
 class AgencyDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userAgency')
     agencyName = models.CharField(max_length=50)
-    agency_logo = models.ImageField(null=True,blank=True)
+    agency_logo = models.ImageField(null=True,blank=True,upload_to='agency_logo')
     agency_Id = models.CharField(max_length=50)
+    agencyEmail = models.EmailField(max_length=50,blank=True,null=True)
     agencyPhNo = models.BigIntegerField()
     agencyCountry = models.CharField(max_length=25)
     agencyCity = models.CharField(max_length=20)
@@ -194,6 +196,16 @@ class AgencyDetail(models.Model):
     def __str__(self):
         return self.agencyName
 
+@receiver(post_save, sender=AgencyDetail)
+def agencyApproovedMail(sender,instance,created,*args,**kwargs):
+    agency = instance
+    if agency.verified:
+        sellerAccountApproovedMail(
+            agency.agencyName,agency.agency_Id,agency.user.userAccess.agentId,
+            [agency.agencyEmail,agency.user.email]
+        )
+
+post_save.connect(agencyApproovedMail,sender=AgencyDetail)
 
 
 # Agency type ends here ------------------
@@ -224,8 +236,6 @@ class AgencyRequestCallBack(models.Model):
     
 
 ''' Signal To Send Mail to Admin that an agency has requested for a call back'''    
-from accounts.email_sender import RequestCallBackMessageToAdmin
-
 @receiver(post_save, sender=AgencyRequestCallBack)
 def AgencyRequstMailSender(sender,instance,created,*args,**kwargs):
     RequestCallBackMessageToAdmin(
@@ -235,3 +245,4 @@ def AgencyRequstMailSender(sender,instance,created,*args,**kwargs):
 
 
 
+post_save.connect(AgencyRequstMailSender,sender=AgencyRequestCallBack)
