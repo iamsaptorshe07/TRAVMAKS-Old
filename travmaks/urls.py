@@ -3,8 +3,8 @@ from django.urls import path, include
 from . import settings
 from django.conf.urls.static import static
 
-admin.site.site_header = "TRAVMAKS ADMIN PANEL - A MAKS CUB3 PRODUCT"
-admin.site.index_title = "TRAVMAKS - We make your travel easy!"
+admin.site.site_header = "TRAVMAKS ADMIN PANEL"
+admin.site.index_title = "TRAVMAKS ADMIN PANEL"
 
 urlpatterns = [
     # Web URLs
@@ -23,4 +23,4 @@ urlpatterns = [
     path('api/v1/traveller/',include('api.travellerAPI.urls'),name='TravellerAPI'),
     path('api/v1/home-app/',include('api.home.urls'),name='homeApp')
 ]
-urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

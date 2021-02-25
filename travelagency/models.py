@@ -49,6 +49,7 @@ class Tour(models.Model):
     publish_mode = models.BooleanField(default=False)
 
     #### resize image
+    '''
     def save(self):
         super().save()
         img = Image.open(self.thumbnail.path)
@@ -59,7 +60,7 @@ class Tour(models.Model):
             img.resize(output_size)
             #img.thumbnail(output_size)
             img.save(self.thumbnail.path)
-        
+    '''    
     def __str__(self):
         return self.tourHeading
 

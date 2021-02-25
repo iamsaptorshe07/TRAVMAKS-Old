@@ -161,6 +161,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 2
 }
 
+''' 
+---------------------------------Static Local Setting --------------------
 # Static
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -171,7 +173,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'designs')
 # Media File
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-
+'''
 # TRAVMAKS Production mail 
 '''
 DEFAULT_FROM_EMAIL = 'travmaks-admin@travmaks.in'
@@ -191,3 +193,25 @@ EMAIL_PORT=587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'makscub3e@gmail.com'
 EMAIL_HOST_PASSWORD = 'Weareteammaks07!'
+
+# AWS S3 static file setting
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+AWS_ACCESS_KEY_ID = 'AKIA4IQ4GE25GU7VXUNI'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'travmaks-bucket'
+AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl':'max-age=86400'}
+AWS_DEFAULT_ACL = 'public-read'
+
+
+AWS_LOCATION = 'static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+STATIC_URL = 'https://{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
+#STATIC_ROOT = os.path.join(BASE_DIR,'assests')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+DEFAULT_FILE_STORAGE = 'travmaks.storages.MediaStore'
