@@ -96,6 +96,84 @@ class OngoingTour(APIView):
                 status = status.HTTP_400_BAD_REQUEST
             )
 
+class OngoingUpcomingTour(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def get(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='traveller':
+                order= Order.objects.filter(customer = request.user,status=True,agent_approval=True)
+                ongoingOrders = []
+                upcomingOrders = []
+                for i in order:
+                    if date.today() >= i.tour.startDate and date.today() <= i.tour.endDate:
+                        ongoingOrders.append(i)
+                for i in order:
+                    if i.tour.startDate > date.today():
+                        upcomingOrders.append(i)
+                ongoing_order_serializer = OrderSerializer(ongoingOrders,many=True)
+                upcoming_order_serializer = OrderSerializer(upcomingOrders,many=True)
+                ongoing_data = ongoing_order_serializer.data
+                upcoming_data = upcoming_order_serializer.data 
+                site = str(get_current_site(request))
+                for i in ongoing_data:
+                    tours = Tour.objects.get(id=i['tour'])
+                    i['tour_name']=tours.tourHeading
+                    i['amount_to_be_paid']=i['total_price']-i['paid_by_user']
+                    i['tour_thumbnail']= site + tours.thumbnail.url
+                    i['tour_slug']=tours.tourSlug
+                    i['agent_name'] = tours.seller.name
+                    i['agency_name']=tours.agency.agencyName
+                    i['agency_id']=tours.agency.agency_Id
+                    i['agent_id']=tours.seller.userAccess.agentId
+                    i['agent_email']=tours.seller.email
+                    i['agent_phone']=tours.seller.phNo
+                    i['agency_email']=tours.agency.agencyEmail
+                    i['agency_phone']=tours.agency.agencyPhNo
+                    i['tour_id']=tours.tourId
+                for i in upcoming_data:
+                    tours = Tour.objects.get(id=i['tour'])
+                    i['tour_name']=tours.tourHeading
+                    i['amount_to_be_paid']=i['total_price']-i['paid_by_user']
+                    i['tour_thumbnail']= site + tours.thumbnail.url
+                    i['tour_slug']=tours.tourSlug
+                    i['agent_name'] = tours.seller.name
+                    i['agency_name']=tours.agency.agencyName
+                    i['agency_id']=tours.agency.agency_Id
+                    i['agent_id']=tours.seller.userAccess.agentId
+                    i['agent_email']=tours.seller.email
+                    i['agent_phone']=tours.seller.phNo
+                    i['agency_email']=tours.agency.agencyEmail
+                    i['agency_phone']=tours.agency.agencyPhNo
+                    i['tour_id']=tours.tourId
+                
+                return Response(
+                    data = {
+                        'status':200,
+                        'ongoingTours':ongoing_data,
+                        'upcomingTours':upcoming_data,
+                    },
+                    status = status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    data = {
+                        'status':401,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_401_UNAUTHORIZED
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    'message':"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
+
+
+
+
 
 class MyBookingHistory(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)

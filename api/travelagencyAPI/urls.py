@@ -6,8 +6,11 @@ urlpatterns = [
         path('my-agency-tour-detail/<tourId>',TourDetail.as_view(),name='TourGetEditDelete'),
         path('ongoing-tour',OngoingTour.as_view(),name='OngoingTour'),
         path('upcoming-tour',UpcomingTour.as_view(),name='UpcomingTour'),
+        path('ongoing-upcoming-tour',OngoingUpcomingTour.as_view(),name='Ongoing-UpcomingTour'),
         path('order-booking-history',OrderBookingHistory.as_view(),name='OrderBookingHistory'),
         path('my-incoming-order-stack',IncomingOrderStack.as_view(),name='IncomingOrderStack'),
         path('accept-decline-tour/<orderId>',AcceptOrDeclineTour.as_view(),name='AcceptOrDecline'),
+        path('add-tour',AddTour.as_view(),name='Add-Tour'),
+        path('edit-tour/<tourId>',EditTour.as_view(),name='Edit-Tour')
         
     ]

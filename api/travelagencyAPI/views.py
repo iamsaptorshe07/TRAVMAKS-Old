@@ -295,21 +295,68 @@ class IncomingOrderStack(APIView):
             )
 
 
-class UpcomingTour(APIView):
+class OngoingUpcomingTour(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
     def get(self,request):
         if request.session.session_key:
             if request.session['access_type']=='seller':
-                upcomingTour = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
-                orders = []
-                for i in upcomingTour:
+                order = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
+                upcomingOrders = []
+                ongoingOrders = []
+                for i in order:
                     if i.tour.startDate > date.today():
-                        orders.append(i)
-                order_serializer = OrderSerializer(orders,many=True)
+                        upcomingOrders.append(i)
+                upcoming_order_serializer = OrderSerializer(upcomingOrders,many=True)
+                for i in order:
+                    if date.today() >= i.tour.startDate and date.today() <= i.tour.endDate:
+                        ongoingOrders.append(i)
+                ongoing_order_serializer = OrderSerializer(ongoingOrders,many=True)
+                upcoming_data = upcoming_order_serializer.data
+                ongoing_data = ongoing_order_serializer.data
+                site = str(get_current_site(request))
+                for i in ongoing_data:
+                    tours = Tour.objects.get(id=i['tour'])
+                    i['tour_name']=tours.tourHeading
+                    i['amount_to_be_paid']=i['total_price']-i['paid_by_user']
+                    i['tour_thumbnail']= site + tours.thumbnail.url
+                    i['tour_slug']=tours.tourSlug
+                    i['agent_name'] = tours.seller.name
+                    i['agency_name']=tours.agency.agencyName
+                    i['agency_id']=tours.agency.agency_Id
+                    i['agent_id']=tours.seller.userAccess.agentId
+                    i['agent_email']=tours.seller.email
+                    i['agent_phone']=tours.seller.phNo
+                    i['agency_email']=tours.agency.agencyEmail
+                    i['agency_phone']=tours.agency.agencyPhNo
+                    i['tour_id']=tours.tourId
+                    i['tour_start_date']=tours.startDate
+                    i['end_date']=tours.endDate
+                    i['starting_location']=tours.startingLocation
+                    i['ending_location']=tours.endLocation
+                for i in upcoming_data:
+                    tours = Tour.objects.get(id=i['tour'])
+                    i['tour_name']=tours.tourHeading
+                    i['amount_to_be_paid']=i['total_price']-i['paid_by_user']
+                    i['tour_thumbnail']= site + tours.thumbnail.url
+                    i['tour_slug']=tours.tourSlug
+                    i['agent_name'] = tours.seller.name
+                    i['agency_name']=tours.agency.agencyName
+                    i['agency_id']=tours.agency.agency_Id
+                    i['agent_id']=tours.seller.userAccess.agentId
+                    i['agent_email']=tours.seller.email
+                    i['agent_phone']=tours.seller.phNo
+                    i['agency_email']=tours.agency.agencyEmail
+                    i['agency_phone']=tours.agency.agencyPhNo
+                    i['tour_id']=tours.tourId
+                    i['tour_start_date']=tours.startDate
+                    i['end_date']=tours.endDate
+                    i['starting_location']=tours.startingLocation
+                    i['ending_location']=tours.endLocation
                 return Response(
                     data = {
                         'status':200,
-                        'upcomingTours':order_serializer.data
+                        'upcomingTours':upcoming_data,
+                        'ongoingTours':ongoing_data
                     },
                     status = status.HTTP_200_OK
                 )
@@ -329,6 +376,8 @@ class UpcomingTour(APIView):
                 },
                 status = status.HTTP_400_BAD_REQUEST
             )
+
+
 
 
 class OrderBookingHistory(APIView):
@@ -369,3 +418,69 @@ class OrderBookingHistory(APIView):
 
 
 
+class UpcomingTour(APIView):
+    pass
+
+
+class AddTour(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def post(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                pass
+                # Someron Start writting code
+            else:
+                return Response(
+                    data={
+                        'status':404,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_400_BAD_REQUEST
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    "message":"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
+
+
+class EditTour(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def post(self,request,tourId):
+        if request.session.session_key:
+            user = request.user
+            if request.session['access_type']=='seller' and Tour.objects.filter(tourId=tourId,seller=user).exists():
+                tour = Tour.objects.get(tourId=tourId,seller=user)
+                if tour.publish_mode:
+                    maximum_people = request.POST.get('seat')
+                    tour.maximum_people = maximum_people
+                    tour.save()
+                    return Response(
+                        data={
+                            'status':200,
+                            'message':"successfully updated the seats"
+                        },
+                        status = status.HTTP_200_OK
+                    )
+                else:
+                    pass
+                # Someron Start writting code
+            else:
+                return Response(
+                    data={
+                        'status':404,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_400_BAD_REQUEST
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    "message":"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )

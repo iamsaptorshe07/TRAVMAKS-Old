@@ -6,7 +6,8 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = [
             'order_id','tour','customer','customer_name','customer_email','customer_phone',
-            'customer_address','agent','agency','total_people','paid_by_user','total_price'
+            'customer_address','agent','agency','total_people','paid_by_user','total_price',
+            'creation_date'
         ]
 
         def create(self,validated_data):

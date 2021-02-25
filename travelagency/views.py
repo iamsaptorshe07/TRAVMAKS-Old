@@ -141,10 +141,7 @@ def agencyTours(request,uid,agid):
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.id == uid and user.userAccess.agentId == agid:
             if request.method == 'GET':
-                tour = Tour.objects.filter(seller__userAccess__agentId = agid)
-                for i in tour:
-                    print(i.endLocation)
-                print(tour)
+                tour = Tour.objects.filter(seller__userAccess__agentId = agid).order_by('-id')
                 context = {
                     'Tours':tour,
                 }
