@@ -11,6 +11,5 @@ urlpatterns = [
         path('my-incoming-order-stack',IncomingOrderStack.as_view(),name='IncomingOrderStack'),
         path('accept-decline-tour/<orderId>',AcceptOrDeclineTour.as_view(),name='AcceptOrDecline'),
         path('add-tour',AddTour.as_view(),name='Add-Tour'),
-        path('edit-tour/<tourId>',EditTour.as_view(),name='Edit-Tour')
         
     ]
