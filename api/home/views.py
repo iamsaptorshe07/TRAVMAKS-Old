@@ -19,8 +19,10 @@ class RecentAddedTour(APIView):
         if len(data)>10:
             data = data[0:11]
         tourSerializer = TourSerializer(data,many=True)
+        '''
         for i in tourSerializer.data:
                     i['thumbnail']=str('http://')+str(get_current_site(request).domain)+str(i['thumbnail'])
+        '''
         return Response(
             {
                 'status':200,
@@ -35,8 +37,10 @@ class SoloTour(APIView):
         if len(data)>10:
             data = data[0:11]
         tourSerializer = TourSerializer(data,many=True)
+        '''
         for i in tourSerializer.data:
                     i['thumbnail']=str('http://')+str(get_current_site(request).domain)+str(i['thumbnail'])
+        '''
         return Response(
             {
                 'status':200,
@@ -51,8 +55,10 @@ class CoupleTour(APIView):
         if len(data)>10:
             data = data[0:11]
         tourSerializer = TourSerializer(data,many=True)
+        '''
         for i in tourSerializer.data:
                     i['thumbnail']=str('http://')+str(get_current_site(request).domain)+str(i['thumbnail'])
+        '''
         return Response(
             {
                 'status':200,
@@ -67,8 +73,10 @@ class FamilyTour(APIView):
         if len(data)>10:
             data = data[0:11]
         tourSerializer = TourSerializer(data,many=True)
+        '''
         for i in tourSerializer.data:
                     i['thumbnail']=str('http://')+str(get_current_site(request).domain)+str(i['thumbnail'])
+        '''
         return Response(
             {
                 'status':200,
@@ -83,8 +91,10 @@ class FriendsTour(APIView):
         if len(data)>10:
             data = data[0:11]
         tourSerializer = TourSerializer(data,many=True)
+        '''
         for i in tourSerializer.data:
                     i['thumbnail']=str('http://')+str(get_current_site(request).domain)+str(i['thumbnail'])
+        '''
         return Response(
             {
                 'status':200,

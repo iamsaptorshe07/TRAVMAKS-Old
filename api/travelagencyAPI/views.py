@@ -239,8 +239,8 @@ class TourDetail(APIView):
                         'message':'Does Not Exist'
                     }
                     return Response(exception,status = status.HTTP_404_NOT_FOUND)
-                date_gap = date.today() - tour.creationDate
-                if date_gap.days > 2:
+                
+                if tour.publish_mode:
                     return Response(
                         data={
                             'status':401,
@@ -298,10 +298,11 @@ class AcceptOrDeclineTour(APIView):
         if request.session.session_key:
             if request.session['access_type']=='seller':
                 if Order.objects.filter(order_id = orderId,agent = request.user).exists():
-                    order = Order.object.get(order_id = orderId)
+                    order = Order.objects.get(order_id = orderId)
                     agent_approval = request.data
                     if agent_approval['approval']==True:
                         order.agent_approval = True
+                        order.save()
                         return Response(
                             data = {
                                 'status':200,
@@ -381,10 +382,21 @@ class IncomingOrderStack(APIView):
             if request.session['access_type']=='seller':
                 order = Order.objects.filter(agent=request.user,status=True,agent_approval=False)
                 order_data = OrderSerializer(order,many=True)
+                main_data = order_data.data
+                for i in main_data:
+                    tour = Tour.objects.get(id=int(i['tour']))
+                    i['tourId'] = tour.tourId
+                    i['tourName'] = tour.tourHeading
+                    i['startLocation']=tour.startingLocation
+                    i['endLocation']=tour.endLocation
+                    i['startDate'] = tour.startDate
+                    i['endDate']=tour.endDate
+                    i['seatLeft']=tour.maximum_people
+                    i['earning']=i['total_price']-i['paid_by_user']
                 return Response(
                             data = {
                                 'status':200,
-                                'incoming_orders':order_data.data
+                                'incoming_orders':main_data
                             },
                             status = status.HTTP_200_OK
                             )
@@ -496,14 +508,25 @@ class OrderBookingHistory(APIView):
     def get(self,request):
         if request.session.session_key:
             if request.session['access_type']=='seller':
-                success_history = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
-                cancel_history = Cancelled_Order.filter(agent=request.user,status=True,agent_approval=True)
-                order_history = success_history.union(cancel_history).order_by('-creation_date')
+                order_history = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
+                #cancel_history = Cancelled_Order.objects.filter(agent=request.user,status=True,agent_approval=True)
+                #order_history = success_history.union(cancel_history).order_by('-creation_date')
                 order_serializer = OrderSerializer(order_history,many=True)
+                main_data = order_serializer.data
+                for i in main_data:
+                    tour = Tour.objects.get(id=int(i['tour']))
+                    i['tourId'] = tour.tourId
+                    i['tourName'] = tour.tourHeading
+                    i['startLocation']=tour.startingLocation
+                    i['endLocation']=tour.endLocation
+                    i['startDate'] = tour.startDate
+                    i['endDate']=tour.endDate
+                    i['seatLeft']=tour.maximum_people
+                    i['earning']=i['total_price']-i['paid_by_user']
                 return Response(
                     data = {
                         'status':200,
-                        'orderHistory':order_serializer.data
+                        'orderHistory':main_data
                     },
                     status = status.HTTP_200_OK
                 )

@@ -160,12 +160,12 @@ def TourDetailsAPIView(request,slug):
         'day_description':day_description
     }
     data1['agentId']=tour.seller.userAccess.agentId
-    link = 'http://'+ str(get_current_site(request).domain)
+    #link = 'http://'+ str(get_current_site(request).domain)
     images = list(dict(data2.data.items()).values())
     mimg = []
     for i in range(1,len(images)-1):
         if(images[i]!=None):
-            images[i]=link+str(images[i])
+            images[i]=str(images[i])
             mimg.append(images[i])
     main_data = {
         'tourdata':data1,

@@ -505,7 +505,7 @@ class AgencyRegister(APIView):
                         return Response(
                             {
                             'status':404,
-                            'message':'Some problem Occured'
+                            'message':agency.errors
                             }
                         )
                 else:

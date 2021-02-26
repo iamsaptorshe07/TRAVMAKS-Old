@@ -468,6 +468,8 @@ def agencyRegister(request):
                 messages.success(request,'Agency Registered, Please wait till we verify your details, then you can add tours')
                 return redirect('Seller_login')         
             else:
+                if AgencyDetail.objects.filter(user=user).exists():
+                    return render(request,'404.html')
                 return render(request,'registeragency.html')
         else:
             return redirect('Seller_login')
