@@ -97,3 +97,69 @@ def orderAcceptMailSender(order):
 
 
 
+def orderMailToAdmin(order,subject):
+    mail_subject = subject
+    reciever = ['booking@travmaks.in']
+    message = """
+     --------------------------------Tour Information -------------------------------- 
+        Tour Name : {}
+        Tour Id : {}
+        Tour Starting Location : {}
+        Tour Ending Location : {}
+        Tour Starting Date : {}
+        Tour Ending Date : {}
+    -------------------------------- Agent Information ----------------------------------
+        Agent Name : {}
+        Agent Id : {}
+        Agent Email : {}
+        Agent Phone : {}
+    --------------------------------- Agency Information ------------------------------
+        Agency Name : {}
+        Agency ID : {}
+        Agency Email : {}
+        Agency Contact No : {}
+    -------------------------------- Customer Information ---------------------------------
+        Customer Name : {}
+        Customer Email : {}
+        Customer Phone : {}
+    --------------------------------- Price Information ------------------------------------
+        Total No of people going : {}
+        Total Cost :{}
+        Paid to TRAVAKS : {}
+        To be paid to {} : {}
+    """.format(
+        order.tour.tourHeading,
+        order.tour.tourId,
+        order.tour.startingLocation,
+        order.tour.endLocation,
+        order.tour.startDate,
+        order.tour.endDate,
+
+        order.agent.name,
+        order.agent.userAccess.agentId,
+        order.agent.email,
+        order.agent.phNo,
+
+        order.agency.agencyName,
+        order.agency.agency_Id,
+        order.agency.agencyEmail,
+        order.agency.agencyPhNo,
+
+        order.customer_name,
+        order.customer_email,
+        order.customer_phone,
+
+        order.total_people,
+        order.total_price,
+        order.paid_by_user,
+        order.agency.agencyName,
+        order.total_price - order.paid_by_user
+    )
+    send_mail(
+         mail_subject,
+        message,
+        from_email = EMAIL_HOST_USER, 
+        recipient_list = reciever,
+        fail_silently=True
+
+    )
