@@ -5,6 +5,7 @@ urlpatterns = [
     path('',index,name='index'),
     path('about-us',aboutUs,name='AboutUs'),
     path('contact-us',contactUs,name='ContactUs'),
+    path('travel-agency-website-tutorial',agencyTutorial,name='agency-tutorial'),
     path('user-privacy-policy',userPrivacyPolicy,name='privacyPolicy'),
     path('user-FAQ',userFAQ,name='userFAQ'),
     path('user-payment-policy',userPaymentPolicy,name='userPaymentPolicy'),
@@ -14,4 +15,5 @@ urlpatterns = [
     path('partnerportal-faq',partnerFAQ,name='partnerFAQ'),
     path('download-app',downloadApp,name='downloadApp'),
     path('beta',betaMode,name='betaMode'),
+    
     ]

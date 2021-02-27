@@ -35,6 +35,10 @@ def contactUs(request):
     else:
         return render(request,'home_app/contactus.html')
 
+
+def agencyTutorial(request):
+    return render(request, 'home_app/agency_tutorial.html')        
+
 def userPrivacyPolicy(request):
     return render(request,'home_app/userprivacypolicy.html')
 
@@ -61,4 +65,3 @@ def downloadApp(request):
 
 def betaMode(request):
     return render(request,'beta.html')
-
