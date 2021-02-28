@@ -32,8 +32,12 @@ def orderRecievedMail(sender,instance,created,*args,**kwargs):
     order = instance
     if order.status is True and order.agent_approval is False:
         orderRecieveMailSender(order)
+        subject = "New Tour Booking order for {}".format(order.tour.tourHeading)
+        orderMailToAdmin(order,subject)
     if order.status is True and order.agent_approval is True:
         orderAcceptMailSender(order)
+        subject = "Tour {} is confirmed by the agency {}".format(order.tour.tourHeading,order.agency.agencyName)
+        orderMailToAdmin(order,subject)
         
 
 

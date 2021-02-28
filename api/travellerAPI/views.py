@@ -224,7 +224,7 @@ class WishListAPI(APIView):
                     site = str(get_current_site(request))
                     tour = Tour.objects.get(id=i['tour'])
                     i['tourHeading']=tour.tourHeading
-                    i['thumbnail']=site + tour.thumbnail.url
+                    i['thumbnail']=tour.thumbnail.url
                     i['tourSlug']=tour.tourSlug
                     i['startDate']=tour.startDate
                     i['endDate']=tour.endDate
