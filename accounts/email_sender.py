@@ -21,7 +21,35 @@ def RequestCallBackMessageToAdmin(name,email,phone,agencyName,message):
         fail_silently=True
 
     )
-
+def agencySignupMailSenderToAdmin(agency):
+    subject = "{} has signed up".format(agency.agencyName)
+    mail_to = ["travmaksagencysupport@travmaks.in"]
+    message = """
+            {} has signed up!
+            ------------------------------------------
+            Agency Name : {}
+            Agency Email :{}
+            Agency Contact No: {}
+            ------------------------------------------
+            Agent Name : {}
+            Agent Email : {}
+            Agent Contact No : {}
+            ------------------------------------------
+              """.format(
+                  agency.agencyName,
+                  agency.agencyName,
+                  agency.agencyEmail,
+                  agency.agencyPhNo,
+                  agency.user.name,
+                  agency.user.email,
+                  agency.user.phNo,
+              )
+    send_mail(
+        subject,
+        message,
+        from_email = EMAIL_HOST_USER, 
+        recipient_list = mail_to,
+        fail_silently=True)
 
 def sellerAccountApproovedMail(agencyName,agencyId,agentId,destinationEmail):
     mail_subject = "{} is now verified and a TRAVMAKS partner".format(agencyName)

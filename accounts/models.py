@@ -208,6 +208,15 @@ def agencyApproovedMail(sender,instance,created,*args,**kwargs):
 post_save.connect(agencyApproovedMail,sender=AgencyDetail)
 
 
+@receiver(post_save, sender=AgencyDetail)
+def agencySignupMailToAdmin(sender,instance,created,*args,**kwargs):
+    agency = instance
+    if agency.verified == False:
+        agencySignupMailSenderToAdmin(agency)
+
+post_save.connect(agencySignupMailToAdmin,sender=AgencyDetail)
+
+
 # Agency type ends here ------------------
 
 # Guide Service 
