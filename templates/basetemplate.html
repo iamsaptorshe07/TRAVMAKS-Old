@@ -99,18 +99,18 @@
     }
     
 </style>
-
+<!-- 
 <script>
     function runOnload(){
         removeLoader();
         checkCookie();
     }
-</script>
+</script> -->
 {% block stylesheets %}
 {% endblock stylesheets %}
 </head>
 
-<body id="page-top" onload="runOnload();">
+<body id="page-top">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     
     <div id="fb-root"></div>
@@ -479,24 +479,6 @@
         }
     });
 
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: false,
-        pagination: false,
-        autoplay: 1000,
-        responsive: {
-            0: {
-                items: 7
-            },
-            600: {
-                items: 7
-            },
-            1000: {
-                items: 7
-            }
-        }
-    })
     jQuery(document).ready(function ($) {
         $(window).scroll(function () {
             if ($(document).scrollTop() > 150) {

@@ -586,18 +586,6 @@
 <!-- Main content starts -->
 {% block body %}
 
-<div id="preload">
-    <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
-</div>
-
-<script type="text/javascript">
-    var loader = document.getElementById('preload');
-    function removeLoader() {
-      setTimeout(function () {
-        loader.style.display = 'none';
-      }, 3000);
-    }
-</script>
 <main class="pt-5">
     <div class="container">
         <div class="row" style="flex-flow: column;">
@@ -739,7 +727,7 @@
                     </div>
                 </form>
                 <div class="tours">
-                    <div class="noMatchFound">No Match Found</div>
+                    <div class="noMatchFound">No Tour Found</div>
                     {% for tour in Tour %}
                     <div class="{{tour.tour_type}} tour" data-ratting="4.5">
                         <div class="stars">
