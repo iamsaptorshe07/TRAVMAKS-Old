@@ -6,7 +6,7 @@ urlpatterns = [
     path('wishlist',wishList,name='wishlist'),
     path('write-review/<tourId>',writeReview,name='write-review'),
     path('generate-invoice/order=<orderID>',invoiceGenerator,name='invoiceGenerator'),
-    path('history-generate-invoice/order=<orderID>',historyInvoiceGenerator,name='historyInvoiceGenerator'),
+    #path('history-generate-invoice/order=<orderID>',historyInvoiceGenerator,name='historyInvoiceGenerator'),
     path('ongoing-tours/<userId>',ongoingTour,name='ongoingTour'),
     path('upcoming-tours/<userId>',upcomingTour,name='upcomingTour'),
 ]
