@@ -129,7 +129,7 @@ def ongoingTour(request,userId):
             tours = Order.objects.filter(customer=user,agent_approval=True,status=True).order_by('id')
             Tour=[]
             for i in tours:
-                if i.tour.startDate < date.today() and date.today() < i.tour.endDate :
+                if  date.today()>=i.tour.startDate and date.today() <=i.tour.endDate :
                     Tour.append(i)
             context = {
                 'Tours':Tour,
