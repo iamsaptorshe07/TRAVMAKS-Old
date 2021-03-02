@@ -383,7 +383,7 @@ def ongoing_tours(request,agentId):
             tours = Order.objects.filter(agent=user,agent_approval=True,status=True).order_by('-id')
             Tour=[]
             for i in tours:
-                if i.tour.startDate < date.today() and date.today() < i.tour.endDate :
+                if i.tour.startDate <= date.today() and date.today() <= i.tour.endDate :
                     Tour.append(i)
             context = {
                 'Tours':Tour
