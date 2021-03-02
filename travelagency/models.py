@@ -70,6 +70,8 @@ def tourPublishedMail(sender,instance,created,*args,**kwargs):
     tour = instance
     if tour.publish_mode and tour.updated is False:
         tourPublishedMailSender(tour)
+    if tour.publish_mode is False and tour.updated is False:
+        newTourAddedToAdminMail(tour) # Sends mail to admin that new tour is added
 post_save.connect(tourPublishedMail,sender=Tour)
 
 
