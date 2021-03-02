@@ -1,115 +1,117 @@
-{% extends 'travelagency/travelagency_basetemplate.html' %}
+{% extends 'basetemplate.html' %}
 {% load static %}
 {% load mathfilters %}
-{% block travelagency_stylesheets %}
+<!-- Stylesheets starts-->
+{% block stylesheets %}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 
-    th {
-        background-color: #4b6cb7;
-        color: white;
-    }
-
-    tr{
-        overflow-x: scroll;
-    }
-    
-
-    tr:hover {
-        background-color: #4d4dff;
-        color: #fff;
+    body {
+        background: #fff;
+        padding-top: 30px;
     }
 
     .fa-plane {
         color: #4B79A1;
     }
-
-    .invoice {
-        position: relative;
-        background: #fff;
-        border: 1px solid #f4f4f4;
-        padding: 20px;
-        margin: 10px 25px;
-    }
-
-    .page-header {
-        margin: 10px 0 20px 0;
-        font-size: 22px;
-    }
-
-    @media screen and (max-width: 850px) {
-        .tble {
-            transform: translate(0px, 96px);
-            margin: auto;
-        }
-    }
 </style>
-{% endblock travelagency_stylesheets %}
+{% endblock %}
+<!--Stylesheets Ends -->
+<!-- Main content starts -->
+{% block body %}
+<!-- loader -->
 
-{% block travelagency_body %}
-<section class="tble"
-    style="width: 95%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);overflow-x:hidden;">
-    <section class="invoice">
-        <!-- title row -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="page-header">
-                    <h3 style="font-family:'Ubuntu', sans-serif;"> <i class="fa fa-plane"></i> Ongoing Tour</h3>
+<div class="container bcontent">
+    <h2 style="font-family:'Ubuntu', sans-serif;"><i class="fa fa-plane"></i>&nbsp; Ongoing Tour</h2>
+    <hr />
+    {% if len == 0 %}
+    <h3 class="mt-3">No Ongoing Tour Aveilable</h3>
+    {% endif %}
+    {% for tour in Tours %}
+    <div class="card">
+        <div class="card-header">
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <h3>TRAVMAKS CO.</h3>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h6>Booked by:</h6>
+                        <a id="popoverData{{tour.id}}" href="#"
+                            data-content="<b>Billing Details</b>
+                            <br>{{tour.customer_name}} 
+                            <br>{{tour.customer_email}}
+                            <br>{{tour.customer_phone}}
+                            <br>{{tour.customer_address}}"
+                            rel="popover" data-html="true" data-placement="bottom" data-trigger="hover"
+                            style="transform: translate(-15px,0px); font-weight:bold;">
+                            {{tour.customer_name}}</a>
+
+                        <script>
+                            $('#popoverData{{tour.id}}').popover();
+                            $('#popoverOption').popover({ trigger: "hover" });
+                        </script>
+
+
+                    </div>
+                    <div class="col-md-2">
+                        <h5>User Id:</h5>
+                        <p>{{uid}}</p>
+                    </div>
+
+                    <div class="col-md-2">
+                        <h6>Booking Placed On:</h6>
+                        <p class="text-muted"><i class="fa fa-calendar-o"></i>&nbsp;{{tour.creation_date}}</p>
+                    </div>
+
                 </div>
-
             </div>
         </div>
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="row">
 
-        <!-- Table row -->
-        <div class="row">
-        <div class="container">
-            <div class="col-xs-12 table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Order Id</th>
-                            <th>Tour Id</th>
-                            <th>Booking Time</th>
-                            <th>Tour Name</th>
-                            <th>Tour Start Location </th>
-                            <th>Tour End Location </th>
-                            <th>Tour Starting Date</th>
-                            <th>Tour Ending Date</th>
-                            <th>Booked By</th>
-                            <th>Total Members</th>
-                            <th>Cutomer Email</th>
-                            <th>Cutomer Phone</th>
-                            <th>Amount Customer paid you</th>
+                    <div class="col-md-4">
+                        <h5>{{tour.tour.tourHeading}}</h5>
+                        <img src="{{tour.tour.thumbnail.url}}" alt="" style="height:200px; width:auto;">
+                    </div>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for tour in Tours %}
-                        <tr>
-                            <td>{{tour.order_id}}</td>
-                            <td>{{tour.tour.tourId}}</td>
-                            <td>{{tour.creation_date}}</td>
-                            <td>{{tour.tour.tourHeading }}</td>
-                            <td>{{tour.tour.startingLocation }}</td>
-                            <td>{{tour.tour.endLocation }}</td>
-                            <td>{{tour.tour.startDate }}</td>
-                            <td>{{tour.tour.endDate }}</td>
-                            <td>{{tour.customer_name}}</td>
-                            <td>{{tour.total_people}}</td>
-                            <td>{{tour.customer_email}}</td>
-                            <td>{{tour.customer_phone}}</td>
-                            <td>{{tour.total_price | sub:tour.paid_by_user}}</td>
-                        </tr>
+                    <div class="col-md-5">
+                        <ul style="list-style-type:none; margin-top:30px;">
+                            <li><small><b>Tour Id</b> &nbsp;:{{tour.tour.tourId}}&nbsp;</small></li>
+                            <li><small><b>Total People</b>&nbsp;:{{tour.total_people}}&nbsp;</small></li>
+                            <li><small><b>Amount To be Paid</b>&nbsp;:{{tour.total_price |sub:tour.paid_by_user}}&nbsp;</small></li>
+                            <li><small><b>Amount Already Paid</b>&nbsp;:{{tour.paid_by_user}}&nbsp;</small></li>
+                            <li><small><b>Total Amount</b>&nbsp;:{{tour.total_price}}&nbsp;</small></li>
+                            <li><small><b>Agent Name</b>&nbsp;:{{tour.agent.name}}</small></li>
+                            <li><small><b>Agent Id</b>&nbsp;:{{tour.agent.userAccess.agentId}}</small></li>
+                            <li><small><b>Agent email</b>&nbsp;:{{tour.agent.email}}</small></li>
+                            <li><small><b>Agent contact no</b>&nbsp;:{{tour.agent.phNo}}</small></li>
+                            <li><small><b>Agency Name</b>&nbsp;:{{tour.agent.userAgency.agencyName}}</small></li>
+                            <li><small><b>Agency Id</b>&nbsp;:{{tour.agent.userAgency.agency_Id}}</small></li>
+                            <li><small><b>Agency Email</b>&nbsp;:{{tour.agent.userAgency.agencyEmail}}</small></li>
+                            <li><small><b>Agency Contact No</b>&nbsp;:{{tour.agent.userAgency.agencyPhNo}}</small></li>
+                        </ul>
+                    </div>
 
-                        {% endfor %}
-                        
+                    <div class="col-md-3 mt-4">
+                        <button type="button" class="btn btn-block btn-dark">Ticket </button><br>
+                        <a href="/traveller/generate-invoice/order={{tour.order_id}}">
+                            <button type="button" class="btn btn-block btn-dark">Invoice</button>
+                        </a>
+                    </div>
 
-
-                    </tbody>
-                </table>
+                </div>
             </div>
         </div>
-    </section>
-</section>
-
-{% endblock travelagency_body %}
+    </div>
+    {% endfor %}
+</div>
+<!-- <script>
+    var len="{{len}}";
+    console.log(len,typeof(len));
+</script> -->
+{% endblock body %}
+<!--Main content Ends-->
