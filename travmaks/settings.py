@@ -174,31 +174,19 @@ STATIC_ROOT = os.path.join(BASE_DIR,'designs')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 '''
-# TRAVMAKS Production mail 
-'''
-DEFAULT_FROM_EMAIL = 'travmaks-admin@travmaks.in'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# Example for using Zoho Mail as email sending backend
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_HOST = 'smtp.zoho.in'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'travmaks-admin@travmaks.in'
-EMAIL_HOST_PASSWORD = 'iamtravmaks07!'
-'''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 MAILER_EMAIL_BACKEND = EMAIL_BACKEND
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'makscub3e@gmail.com'
-EMAIL_HOST_PASSWORD = 'Weareteammaks07!'
+EMAIL_HOST_USER = 'password'
+EMAIL_HOST_PASSWORD = 'password'
 
 # AWS S3 static file setting
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-AWS_ACCESS_KEY_ID = 'AKIA4IQ4GE25GU7VXUNI'
-AWS_SECRET_ACCESS_KEY = 'czcC8+LFhskWEaiq9qw/vi3ia6/Ube5AAZFno1/i'
+AWS_ACCESS_KEY_ID = 'your key'
+AWS_SECRET_ACCESS_KEY = 'your key'
 AWS_STORAGE_BUCKET_NAME = 'travmaks-bucket'
 AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl':'max-age=86400'}
